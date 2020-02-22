@@ -1,0 +1,42 @@
+git config --global user.name "enter your name here"
+git config --global user.email "enter your email here"
+git config user.name #returns username
+git config. user.email #returns email
+
+ls -a #returns the file under the repo
+
+git status #returns the status duh
+git log #returns the history
+
+git add *filename* #add files to be committed
+git rm *filename* #remove files to be committed
+git add . #add all
+
+
+git commit -m "*insert note here*" #commit to current branch
+git checkout *numbercode* #go back to a certain commit point
+git checkout *branch name* #go to a certain branch
+git checkout master #returns to the master branch
+
+git branch #returns a list of branches
+git branch *branchg name* #create new branch
+
+git merge *name of branch* #merge the said branch to the current branch
+
+git branch -d *name of branch* #delete branch
+
+git remote add origin *insert link here* #adds the remote repository
+git config --get remote.origin.url #returns the remote url
+
+git push -u origin master #pushes the master branch to the remote repositroy
+git pull origin master #pull the master branch from the remote repository
+
+git push origin *name of branch* #pushes the current branch to the remote repository
+
+	*additional notes:
+	VIM: 
+	press "i"
+	write your merge message
+	press "esc"
+	write ":wq"
+	then press enter
