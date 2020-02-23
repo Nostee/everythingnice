@@ -12,7 +12,6 @@ git add *filename* #add files to be committed
 git rm *filename* #remove files to be committed
 git add . #add all
 
-
 git commit -m "*insert note here*" #commit to current branch
 git checkout *numbercode* #go back to a certain commit point
 git checkout *branch name* #go to a certain branch
