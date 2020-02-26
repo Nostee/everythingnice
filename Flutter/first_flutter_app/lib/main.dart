@@ -22,13 +22,12 @@ class Home extends StatelessWidget {
             backgroundColor: Colors.black87,
         ),
         body: Center(
-
-
+          child: Text("Hey!"),
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: () {} ,
             child: Text("+"),
-            backgroundColor: Colors.black87,
+            backgroundColor: Colors.black54,
         ),
     );
   }
