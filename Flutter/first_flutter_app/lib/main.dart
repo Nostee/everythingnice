@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
@@ -14,20 +15,12 @@ class Home extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 15,
                     fontFamily: "Avenir",
-                    color: Colors.teal,
+                    color: Colors.white,
                   letterSpacing: 17
                 )
             ),
             centerTitle: true,
             backgroundColor: Colors.black87,
-        ),
-        body: Center(
-          child: Text("Hey!"),
-        ),
-        floatingActionButton: FloatingActionButton(
-            onPressed: () {} ,
-            child: Text("+"),
-            backgroundColor: Colors.black54,
         ),
     );
   }

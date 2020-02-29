@@ -6,6 +6,8 @@ class DataTypesConversion{
     {
         Scanner scan = new Scanner(System.in);
         int len = scan.nextInt();
+
+        //BONUS: String s = String.valueOf(n); (When converting any datatype to string.)
         scan.nextLine();
         for (int ctr = 1;ctr<=len;ctr++)
         {

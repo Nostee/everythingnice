@@ -9,8 +9,6 @@ def print_rangoli(n):
         x = "-".join(alpha[x:n])
         myList.append(x[::-1] + x[1:])
 
-    # print(myList)
-
     for y in range(n - 1, -1, -1):
         try:
             print(myList[y].center(width, "-"))

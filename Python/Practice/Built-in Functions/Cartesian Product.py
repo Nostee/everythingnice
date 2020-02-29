@@ -5,9 +5,7 @@ y = map(int,input().split())
 
 
 z = list(product(x,y))
-welp = len(list(z))
-ctr = 0
 
-for wew in z:
-    print(wew,end = " ")
+for x in z:
+    print(x,end = " ")
 
