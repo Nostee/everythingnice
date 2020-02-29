@@ -8,8 +8,10 @@ public class Currency {
         double payment = scanner.nextDouble();
         scanner.close();
 
+        //creates new locale since india currency is not available to the method
         Locale indiaLocale = new Locale("en", "IN");
 
+        //converts the money given to different currencies
         NumberFormat us = NumberFormat.getCurrencyInstance(Locale.US);
         NumberFormat india = NumberFormat.getCurrencyInstance(indiaLocale);
         NumberFormat china = NumberFormat.getCurrencyInstance(Locale.CHINA);

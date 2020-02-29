@@ -13,9 +13,11 @@ public class LocalDateCalendar
         System.out.println("Enter Day:");
         int dy = scan.nextInt();
 
+        //puts the elements of the date into the local date method
         LocalDate ld = LocalDate.of(yr,mt,dy);
         System.out.println(ld);
-        //when getting the day of the week
+
+        //gets the day of the week
         System.out.print(ld.getDayOfWeek());
     }
 }

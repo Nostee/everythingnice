@@ -5,16 +5,20 @@ class DataTypesConversion{
     public static void main(String []argh)
     {
         Scanner scan = new Scanner(System.in);
+        //asks how many numbers will be checked to fit into data
         int len = scan.nextInt();
 
         //BONUS: String s = String.valueOf(n); (When converting any datatype to string.)
         scan.nextLine();
         for (int ctr = 1;ctr<=len;ctr++)
         {
+            //check is to determine whether it can fit into a certain data type
             int check = 0;
+            //inputs any number to string
             String num = scan.nextLine();
             try
             {
+                //converts any number to data types
                 long d = Long.valueOf(num).longValue();
                 check = check+1;
                 int c = Integer.valueOf(num).intValue();
