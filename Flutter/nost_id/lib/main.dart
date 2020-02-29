@@ -1,11 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
-  home: NosteeID()
-));
+void main()
+{
+  runApp(MaterialApp(
+      home: NosteeID()
+  ));
+}
 
-class NosteeID extends StatelessWidget {
+class NosteeID extends StatefulWidget {
+  @override
+  _NosteeIDState createState() => _NosteeIDState();
+}
+
+class _NosteeIDState extends State<NosteeID> {
+
+  String name = "Jedidiah David H. Calayag";
+  String bday = "08/25/99";
+  int ctr = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,15 +26,28 @@ class NosteeID extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.blueGrey[800],
-        title: Text(
-            "NOSTEE'S IDENTIFICATION CARD",
-          style: TextStyle(
-            color: Colors.blueGrey[200],
-            fontSize: 10,
-            letterSpacing: 2,
-            fontFamily: 'Pixeled',
-          )
+        title: Align(
+          alignment: Alignment.center,
+          child: Text(
+              "NOSTEE'S IDENTIFICATION CARD",
+            style: TextStyle(
+              color: Colors.blueGrey[200],
+              fontSize: 10,
+              letterSpacing: 2,
+              fontFamily: 'Pixeled',
+            ),
+            textAlign: TextAlign.left
+          ),
         )
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blueGrey,
+        child: Icon(Icons.add),
+        onPressed: () {
+          setState(() {
+            ctr = ctr+1;
+          });
+        },
       ),
       body: Padding(
         padding: EdgeInsets.all(18),
@@ -48,7 +74,7 @@ class NosteeID extends StatelessWidget {
               ),
             ),
             Text(
-              "Jedidiah David H. Calayag",
+              "$name",
               style: TextStyle(
                   fontSize: 15,
                   fontFamily: "Pixeled",
@@ -64,7 +90,7 @@ class NosteeID extends StatelessWidget {
               ),
             ),
             Text(
-              "08/25/99",
+              "$bday",
               style: TextStyle(
                   fontSize: 15,
                   fontFamily: "Pixeled",
@@ -195,6 +221,27 @@ class NosteeID extends StatelessWidget {
                 )
               ],
             ),
+            SizedBox(height: 20),
+            Row(
+              children: <Widget>[
+                Text(
+                    "Number of times the button was clicked: ",
+                  style: TextStyle(
+                    fontFamily: "Pixeled",
+                    fontSize: 10,
+                    color : Colors.blueGrey[500]
+                  )
+                ),
+                SizedBox(width: 10),
+                Text(
+                  "$ctr",
+                  style: TextStyle(
+                    fontFamily: "Pixeled",
+                    color: Colors.white
+                  )
+                )
+              ],
+            )
           ],
         )
 

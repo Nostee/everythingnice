@@ -16,7 +16,7 @@ class thisCode(): #this is a class, obviously
 x = thisCode(5,4) #only runs the constructor
 x.doThis2() #runs a specific method
 
-class ey(thisCode): #inherits the methods o
+class ey(thisCode): #inherits the methods
     def __init__(self,x,y):
         super().__init__(x,y)
         self.name = x

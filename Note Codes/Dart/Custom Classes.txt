@@ -1,0 +1,45 @@
+#save the class as "quote.dart"
+
+class Quote
+{
+  String text;
+  String author;
+
+  Quote({this.text,this.author});
+}
+
+import 'quote.dart';
+
+#when putting data(list) into the new class
+
+List<Quote> quotes = [
+    Quote(text: "example text",author: "example author"),
+    Quote(text: "example text2",author: "example author2"),
+  ];
+
+#when displaying a list of data using map
+
+children: quotes.map((x) {
+            return Text(
+                "${x.text} - ${x.author}",
+              style: TextStyle(
+                color: Colors.white
+              )
+            );
+          }).toList(),
+		  
+#when displaying a list of data and other things using map
+
+children: quotes.map((x) {
+            return Column(
+              children: <Widget>[
+                Text(
+                  "${x.text} - ${x.author}",
+                  style: TextStyle(
+                    color: Colors.white
+                  )
+                ),
+                SizedBox(height: 10)
+              ]
+            );
+          }).toList(),
