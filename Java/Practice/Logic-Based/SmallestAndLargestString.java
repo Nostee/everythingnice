@@ -14,6 +14,7 @@ public class SmallestAndLargestString {
         {
             //gets the substring
             tempo = s.substring(ctr,ctr+k);
+            System.out.println("Current substring: "+tempo);
             //puts the tempo in empty variables
             if(smallest.equals(""))
             {
