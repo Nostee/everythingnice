@@ -1,0 +1,207 @@
+# Creating the main() function of your flutter app.
+
+//example:
+void main() => startApp(MaterialApp(
+	home: *name of your class*()
+));
+
+// void main() is the fuction that our app will run first.
+// startApp() is a function that runs a widget at the startup.
+
+# Creating a stateless widget.
+1. Type "stless" and it will automatically create the code for you.
+2. Name the class.
+3. Return a widget. Preferrably Scaffold().
+
+//example:
+class *any name* extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+		//put anything here.
+        )
+    );
+  }
+}
+
+***NOTICE***
+// Widgets starts with an UPPERCASE letter.
+// Properties starts with a LOWERCASE letter.
+// put a comma(,) every after widget/property if you to want to put another widget/property.
+******
+
+# Widget: MaterialApp() - it is our main widget.
+	Properties:
+	> home - it assigns a widget that the app should show first when it is opened.
+		   - therefore, you should assign a widget here; Preferrably your own class.
+	
+# Widget: Scaffold() - it wraps our widgets into one whole page.
+	Properties:
+	> appBar - it is the bar that shows at the very top of the Scaffold().
+			 - it contains the widget, AppBar().
+	> body - it specifies what should be the content of your scaffold. 
+		   - essential to every scaffold.
+		   - it should contain a widget.
+    > floatingActionButton - it is a button that floats on the bottom right(with a little bit of padding) of the scaffold.
+						   - it contains the widget, FloatingActionButton().
+	
+# Widget: AppBar() - it handles the info of the appBar property.
+	Properties:
+	> title - it will display a text on the bar using a Text() widget.
+	> centerTitle - it contains a boolean(true or false) that decides whether the text is centralized or not.
+	> backgroundColor - it paints the widget with an assigned color.
+					  - it contains a Color. object: Color.*any color*[*any value*]
+							// eg. Colors.red[500] 
+	> elevation - set to 0.0 to remove the drop shadow.
+	
+# Widget: FloatingActionButton() - it handles the info of the floatingActionButton property.
+	Properties:
+	> onPressed - it contains a function.
+					//eg. () {*code here*} 
+	> child - it handles a single widget nested into its parent widget.
+	> backgroundColor - it paints the widget with an assigned color.
+					  - it contains a Color. object: Color.*any color*[*any value*]  
+							// eg. Colors.red[500] 
+	
+# Widget: Text() - it handles a String to be shown and could hold multiple properties.
+	Properties:
+	> style - it allows to customize the text to be displayed. 
+			- it contans the widget, TextStyle().
+			
+# Widget: TextStyle() - it handles the info of the style property.
+	Properties:
+	> fontFamily: it contains a String which is the name of your chosen font family. 
+	> color - it paints the widget with an assigned color.
+			- it contains a Color. object: Color.*any color*[*any value*]  
+					// eg. Colors.red[500] 
+	> fontSize - it contains a double that determines the size of the font.
+	> fontWeight - it contains a FontWeight. object:  FontWeight.*any font weight*
+						// eg. FontWeight.bold 
+	> letterSpacing - it contains a double that determines the space between the letters.
+
+***USING OTHER FONTS***
+1. Create a folder inside the project.
+2. Put the downloaded font inside the folder.
+3. Edit pubspec.yaml, particularly on the "fonts" section.
+4. Click "Get dependencies" on the main class.
+
+//eg. 
+fonts: 
+	- family: any name you want to give on your font
+	  fonts: 
+		- asset: path of the font file
+******
+
+# Widget: Center() - it centralizes any nested widget inside of it.
+	Properties:
+	> child - it handles a single widget nested into its parent widget.
+	
+# Widget: AssetImage() - it handles a string inside the () that loads a local image using its path.
+# Widget: Image().network() - it handles a string inside the () that loads an online image using its url/location.
+	
+***USING LOCAL IMAGES***
+1. Create a folder inside the project.
+2. Put the downloaded image inside the folder.
+3. Edit pubspec.yaml, particularly on the "assets" section.
+4. Click "Get dependencies" on the main class.
+
+//eg. 
+assets: 
+	- name of folder/
+******
+	
+# Widget: RaisedButton()/FlatButton()/RaisedButton.icon()/FlatButton.icon()/IconButton() - it is a button with or without a drop shadow and with or without an icon.
+						
+	Properties:
+	> onPressed - it contains a function.
+					//eg. () {*code here*} 
+	> child - it handles a single widget nested into its parent widget.
+	> color - it paints the widget with an assigned color.
+			- it contains a Color. object: Color.*any color*[*any value*]  
+					// eg. Colors.red[500] 
+	if .icon:
+	> icon - contains the widget, Icon().
+	> label - it sits right next to the icon.
+			- it contains the widget, Text().
+	
+# Widget: Icon() - it handles an Icons. object: Icons.*name of icon* inside its ().
+	Properties:
+	> color - it paints the widget with an assigned color.
+			- it contains a Color. object: Color.*any color*[*any value*]  
+					// eg. Colors.red[500] 
+	> size	- it contains a double that determines it size.
+	
+# Widget: Container() - it wraps the widget.
+	Properties:
+	> color - it paints the widget with an assigned color.
+			- it contains a Color. object: Color.*any color*[*any value*]  
+					// eg. Colors.red[500] 
+	> child - it handles a single widget nested into its parent widget.
+	> padding/margin - it gives space surrounding the widget that's inside/outside the container
+			  - contains an EdgeInsets. object: EdgeInsets.all[double]
+												EdgeInsets.symmetric[horizontal: double,vertical: double]
+												EdgeInsets.fromLTRB[double,double,double,double]
+												
+# Widget: Padding() - it gives space around the child widget.
+	Properties:
+	> padding - it gives space surrounding the widget.
+			  - contains an EdgeInsets. object: EdgeInsets.all[double]
+												EdgeInsets.symmetric[horizontal: double,vertical: double]
+												EdgeInsets.fromLTRB[double,double,double,double]
+	> child - it handles a single widget nested into its parent widget.
+	
+# Widget: Row() - it wraps multiple widgets horizontally.
+	Properties:
+	> children - it contains the list, <Widget>[].
+			   - the list can contain multiple widgets.
+    > mainAxisAlignment - contains a MainAxisAlignment. object: MainAxisAlignment.center
+																MainAxisAlignment.spaceBetween
+																MainAxisAlignment.spaceEvenly
+																MainAxisAlignment.end
+	> crossAxisAlignment - contains a CrossAxisAlignment. object: CrossAxisAlignment.stretch
+																  CrossAxisAlignment.start
+																  CrossAxisAlignment.end
+																  
+# Widget: Column() - it wraps multiple widgets vertically.
+	Properties:
+	> children - it contains the list, <Widget>[].
+			   - the list can contain multiple widgets.
+    > mainAxisAlignment - contains a MainAxisAlignment. object: MainAxisAlignment.center
+																MainAxisAlignment.spaceBetween
+																MainAxisAlignment.spaceEvenly
+																MainAxisAlignment.end
+	>crossAxisAlignment - contains a CrossAxisAlignment. object: CrossAxisAlignment.stretch
+																  CrossAxisAlignment.start
+																  CrossAxisAlignment.end
+
+# Widget: Expanded() - it expands the space consumed by the child widget. Mostly used in Column() and Row().
+	Properties:
+	> child - it handles a single widget nested into its parent widget.
+	> flex - it contains an integer that determines the space consumed shared by the widgets under the Column() or Row().
+	
+# Widget: SizedBox() - it is an empty box made for giving space between widgets.
+	Properties:
+	> height - it contains a double that determines its height.
+	> width - it contains a double that determines its width.
+	
+# Widget: CircleAvatar() - it displays an image that's clipped in a circle.
+	Properties:
+	> backgroundImage - it contains an AssetImage() widget.
+	> radius - contains a double that determines its size.
+	
+# Widget: Divider() - it displays a thin line between two widgets.
+	Properties:
+	> height - it contains a double that determines its height.
+	> color - it paints the widget with an assigned color.
+			- it contains a Color. object: Color.*any color*[*any value*]  
+					// eg. Colors.red[500] 
+	
+	
+	
+	
+	
+	
+	
+	
+
+	

@@ -8,7 +8,7 @@ public class RegexDuplicate
     {
         Scanner scan = new Scanner(System.in);
         int num = scan.nextInt();
-        Pattern pt = Pattern.compile("(\\b\\w+)(\\s\\1\\b)+",Pattern.CASE_INSENSITIVE);
+        Pattern pt = Pattern.compile("\\b(\\w+)(\\s\\1)+\\b",Pattern.CASE_INSENSITIVE);
         scan.nextLine();
         for(int ctr = 1;ctr<=num;ctr++)
         {

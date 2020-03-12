@@ -5,9 +5,8 @@ public class RegexPractice
 {
     public static void main(String[] args)
     {
-        String y = "(([2][0-5][0-5])|([0-1][0-9][0-9])|([0-9][0-9]))\\.(([2][0-5][0-5])|([0-1][0-9][0-9])|([0-9][0-9]))" +
-                "\\.(([2][0-5][0-5])|([0-1][0-9][0-9])|([0-9][0-9]))\\.(([2][0-5][0-5])|([0-1][0-9][0-9])|([0-9][0-9]))";
-        String x = "000.12.12.034";
+        String y = "<(\\w+)>.+<[/]\\1>";
+        String x = "<h1>asdfds fds fsad</h1>";
 
         Pattern pt = Pattern.compile(y); //takes the regex expression
         Matcher mt = pt.matcher(x); //takes the string to be checked
