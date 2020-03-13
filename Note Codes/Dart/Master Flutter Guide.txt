@@ -19,10 +19,98 @@ class *any name* extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
 		//put anything here.
-        )
     );
   }
 }
+
+# Creating a statful widget.
+1. Type "stful" and it will automatically create the code for you.
+2. Name the class.
+3. Return a widget in the second created class. Preferrably Scaffold().
+
+//example:
+class Test extends StatefulWidget {
+  @override
+  _TestState createState() => _TestState();
+}
+
+class _TestState extends State<Test> {
+  //intialize any data here.
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+		//put anything here.
+	);
+  }
+}
+
+# Converting to stateful/stateless widget.
+1. Just click the state after the "extend".
+2. Choose your new state. 
+
+# How to display data in your widgets.
+//example:
+int ctr = 0;
+*when using in widget*
+"$ctr"
+//always use in a string then put a dollar sign before the variable.
+
+# When manipulating data in a function. Always put your code in the setState(() {}). It also works even if the function is empty.
+//example:
+onPressed: () {
+          setState(() {
+            myLevel = myLevel+1;
+            print("Log: Added some level!");
+          });
+		  
+
+# Using the Map Function.
+	> It cycles through a list of data.
+	> Used in children property.
+	> It is an iterable so it should be converted into a list afterwards.
+//example
+children: name_of_variable.map((any_variable_name) {
+	return Widget(
+		//put anything here
+	);
+}).toList()
+
+*name_of_variable is a list.
+*any_variable_name will act as a receiver of data from the list.
+		  
+# Creating your own class.
+1. Create a new file. (first letter should be a smaller case)
+2. The class name should be the same with 
+   the file name but the first letter should be upper case.
+2. Initialize your variables.
+3. Import your file to your main class.
+
+"Note: Creating your own class is like creating your own data type with different properties."
+//example(creating your own class)
+class Person
+{
+	String name;
+	String age;
+	
+	Person({this.name , this.age})
+}
+//example(importing)
+import "person.dart";
+
+# Assigning data to your class (mostly done in a list)
+List<Person> people = [
+	Person(name: "Jedidiah",age: "20")
+	]
+
+# When getting a data from the property
+1. Should be inside the ${object.property}
+//example
+children: people.map((human){
+return Text(" Name is ${human.name}, ${human.age} years old.")
+})
+
+
+"********************WIDGETS********************"
 
 ***NOTICE***
 // Widgets starts with an UPPERCASE letter.
@@ -96,8 +184,12 @@ fonts:
 	Properties:
 	> child - it handles a single widget nested into its parent widget.
 	
+# Widget: Image() - it handles an image.
+	Properties:
+	> image - it handles a widget called, AssetImage() or NetworkImage().
+	
 # Widget: AssetImage() - it handles a string inside the () that loads a local image using its path.
-# Widget: Image().network() - it handles a string inside the () that loads an online image using its url/location.
+# Widget: NetworkImage() - it handles a string inside the () that loads an online image using its url/location.
 	
 ***USING LOCAL IMAGES***
 1. Create a folder inside the project.

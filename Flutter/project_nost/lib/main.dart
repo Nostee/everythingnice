@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
+import "quotes.dart";
 
 void main() => runApp(MaterialApp(
   home: Home()
 ));
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  int myLevel = 0;
+  List<Quotes> myQuote = [
+    Quotes(text: "If you're hungry, eat.",author: "Luffy"),
+    Quotes(text: "Everthing sucks.",author: "Introvert Boi")
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +29,17 @@ class Home extends StatelessWidget {
           )
         ),
         centerTitle: true,
+        elevation: 0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.blueAccent,
+        onPressed: () {
+          setState(() {
+            myLevel = myLevel+1;
+            print("Log: Added some level!");
+          });
+        },
         elevation: 0,
       ),
       body: Padding(
@@ -47,7 +69,8 @@ class Home extends StatelessWidget {
                 "Jedidiah David H. Calayag",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 25
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
                 )
             ),
             SizedBox(height: 20),
@@ -60,11 +83,49 @@ class Home extends StatelessWidget {
             ),
             SizedBox(height: 5),
             Text(
-                "1",
+                "$myLevel",
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 25
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
                 )
+            ),
+            SizedBox(height: 20),
+            Text(
+                "FAVORITE QUOTES",
+              style: TextStyle(
+                letterSpacing: 4,
+                color: Colors.white38,
+              )
+            ),
+            SizedBox(height: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: myQuote.map((x) {
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(6, 0, 0, 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      Text(
+                          "${x.text}",
+                          style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white
+                        )
+                      ),
+                      SizedBox(width: 5),
+                      Text(
+                          "by ${x.author}",
+                        style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white38
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
             ),
             SizedBox(height: 20),
             Row(
@@ -78,9 +139,10 @@ class Home extends StatelessWidget {
                   "nosteeeeeee@gmail.com",
                   style: TextStyle(
                     color: Colors.white38,
-                    fontSize: 13
+                    fontSize: 13,
+                    letterSpacing: 2
                   )
-                )
+                ),
               ],
             )
           ],
