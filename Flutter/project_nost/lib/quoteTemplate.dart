@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import "quotes.dart";
 
-class QuoteTemplate extends StatelessWidget {
+class QuoteTemplate extends StatefulWidget {
   final Quotes myQuote;
   final Function delete;
   QuoteTemplate({this.myQuote,this.delete});
 
+  @override
+  _QuoteTemplateState createState() => _QuoteTemplateState();
+}
+
+class _QuoteTemplateState extends State<QuoteTemplate> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -18,7 +23,7 @@ class QuoteTemplate extends StatelessWidget {
             Expanded(
               flex: 7,
               child: Text(
-                  "${myQuote.text}",
+                  "${widget.myQuote.text}",
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.white
@@ -29,7 +34,7 @@ class QuoteTemplate extends StatelessWidget {
             Expanded(
               flex: 6,
               child: Text(
-                "by ${myQuote.author}",
+                "by ${widget.myQuote.author}",
                 style: TextStyle(
                     fontSize: 15,
                     color: Colors.white38
@@ -49,7 +54,7 @@ class QuoteTemplate extends StatelessWidget {
                   )
                   ),
                   onPressed: () {
-                    delete();
+                    widget.delete();
                   }
                   ),
             ),

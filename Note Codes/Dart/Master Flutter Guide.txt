@@ -173,6 +173,54 @@ onPressed: ()
      delete();
 }
 
+# Creating multiple pages and how to navigate through them.
+1. Create custom classes then import the material app in each file. 
+2. In your main class, create a routes property. (Go to the MaterialApp() section in order to understand on how to use this property.)
+3. Put some destination in your routes property. 
+4. In order to navigate to a page, add a Navigator. object to the function of a particular button.
+   //example:
+	onPressed: () {
+		Navigator.pushNamed(context, "/whateverlocation");
+	}
+
+# Implementing a function that runs once the custom class run.
+1. Just right after the class state, type initstate and it will automatically code for you.
+2. Remove TO DO line.
+	//example:
+	@override
+	void initState()
+	{
+		super.initState();
+		print("It runs.");
+	}
+
+# Creating a Asynchronous function. (A function that runs after several time after.)
+1. Create a void function and name it whatever you want.
+2. Put a Future. object that handles delayed().
+3. Enter a duration and another function inside the delayed property.
+4. Then put a "async" right after the function name. (After the "()")
+5. If you want to finish a function first before moving on to the next function, put an "await" before the line.
+	//example
+	void delayedRun() async
+	  {
+		await Future.delayed(Duration(seconds: 3),() {
+		  print("3 seconds has passed.");
+		});
+	  }
+	  
+# Putting data into variables with Asynchronous function.
+1. Initialize a variable then put a Future. object in it. (Including the properties)
+2. Inside the nested function, return a value.
+3. Do not forget the "async". For some reason, you can't return a value without it.
+	//example
+	void delayedRun() async
+	{
+		String username = await Future.delayed(Duration(seconds: 3),() {
+			return "Nostee";
+		})
+	}
+	
+
 "********************WIDGETS********************"
 
 ***NOTICE***
@@ -185,6 +233,17 @@ onPressed: ()
 	Properties:
 	> home - it assigns a widget that the app should show first when it is opened.
 		   - therefore, you should assign a widget here; Preferrably your own class.
+	> routes - it contains a function that handles a map. 
+	//example
+	routes: {
+		"/": (context) => LoadingScreen(),
+		"/home": (context) => Home(),
+		"/location": (context) => ChooseLocation(),
+	}
+		Notes: "/" stands for a base route. Basically, the app starts on the base route.
+			   "/anything" stands for a route. 
+    > initialRoute - It overrides the base route. Do not put with the home property.
+				   - It contains a string value of the page. eg. "/home"
 	
 # Widget: Scaffold() - it wraps our widgets into one whole page.
 	Properties:
@@ -359,7 +418,9 @@ assets:
 											EdgeInsets.fromLTRB[double,double,double,double]
 	> child - it handles a single widget nested into its parent widget.
 	
-	
+# Widget: SafeArea() - it moves the child widget to the screen where we can actually see it.
+	Properties:
+	> child - it handles a single widget nested into its parent widget.
 	
 	
 	
