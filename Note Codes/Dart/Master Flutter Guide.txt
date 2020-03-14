@@ -97,18 +97,81 @@ class Person
 //example(importing)
 import "person.dart";
 
-# Assigning data to your class (mostly done in a list)
+# Assigning data to your class (mostly done in a list).
 List<Person> people = [
 	Person(name: "Jedidiah",age: "20")
 	]
 
-# When getting a data from the property
+# When getting a data from the property of a custom class.
 1. Should be inside the ${object.property}
 //example
 children: people.map((human){
-return Text(" Name is ${human.name}, ${human.age} years old.")
+return Text("Name is ${human.name}, ${human.age} years old.")
 })
 
+# Setting up a widget template.
+1. Create a new object of the Widget class.
+2. Return a widget.
+//example
+Widget myTemplate(x)
+{
+	return Card();
+}
+
+//example for when calling the widget template
+x.map((y){
+	return myTemplate(y);
+	}).toList();
+
+# Creating a Widget Class.
+1. Create a new file. Name it the same with the name of the class. (Lowercase for convention's sake)
+2. Create a stateless widget. The class name should be uppercase. 
+3. Create a final variable name of the object that will be used.
+4. Create a constructor that gives data to the final variable.
+5. Import the files imported by the main file.
+//example
+class QuoteTemplate extends StatelessWidget {
+  final Quotes myQuote;
+  QuoteTemplate({this.myQuote});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(myQuote.author);
+  }
+}
+
+// example for when calling a widget class.
+children: myQuote.map((x) {
+		return QuoteTemplate(myQuote: x);
+	  }).toList(),
+
+# Creating a function object.
+1. Create a function object.
+2. This is mostly created in custom widgets.
+//example
+final Function delete; 
+
+Notes: 
+1. "delete" is the variable name
+2. "Function" is an object.
+
+// example when delivering the data of the custom function from the main class
+children: myQuote.map((x) {
+                return QuoteTemplate(
+                    myQuote: x, //disregard this. focus on the delete
+                    delete: () {
+                      setState(() {
+                        myQuote.remove(x);
+                      });
+                    }
+                );
+              }).toList(),
+
+// example when calling the function from the custom class
+onPressed: () 
+{
+     delete();
+}
 
 "********************WIDGETS********************"
 
@@ -288,6 +351,13 @@ assets:
 			- it contains a Color. object: Color.*any color*[*any value*]  
 					// eg. Colors.red[500] 
 	
+# Widget: Card() - it acts as a container of a widget in a elevated card form.
+	Properties:
+	> padding/margin - it gives space surrounding the widget that's inside/outside the card.
+		  - contains an EdgeInsets. object: EdgeInsets.all[double]
+											EdgeInsets.symmetric[horizontal: double,vertical: double]
+											EdgeInsets.fromLTRB[double,double,double,double]
+	> child - it handles a single widget nested into its parent widget.
 	
 	
 	

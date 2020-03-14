@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import "quotes.dart";
+import "quoteTemplate.dart";
 
 void main() => runApp(MaterialApp(
   home: Home()
@@ -16,6 +17,8 @@ class _HomeState extends State<Home> {
     Quotes(text: "If you're hungry, eat.",author: "Luffy"),
     Quotes(text: "Everthing sucks.",author: "Introvert Boi")
   ];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,28 +105,13 @@ class _HomeState extends State<Home> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: myQuote.map((x) {
-                return Padding(
-                  padding: const EdgeInsets.fromLTRB(6, 0, 0, 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: <Widget>[
-                      Text(
-                          "${x.text}",
-                          style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white
-                        )
-                      ),
-                      SizedBox(width: 5),
-                      Text(
-                          "by ${x.author}",
-                        style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.white38
-                        ),
-                      ),
-                    ],
-                  ),
+                return QuoteTemplate(
+                    myQuote: x,
+                    delete: () {
+                      setState(() {
+                        myQuote.remove(x);
+                      });
+                    }
                 );
               }).toList(),
             ),
@@ -151,3 +139,4 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
