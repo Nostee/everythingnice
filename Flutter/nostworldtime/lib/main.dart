@@ -9,6 +9,6 @@ void main() => runApp(MaterialApp(
     "/home": (context) => Home(),
     "/chooseLocation": (context) => ChooseLocation(),
   },
-  initialRoute: "/home",
+  initialRoute: "/",
 ));
 

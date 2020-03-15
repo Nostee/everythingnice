@@ -220,7 +220,53 @@ onPressed: ()
 		})
 	}
 	
+# Adding the HTTP package to flutter.
+1. Go to pubspec.yaml
+2. Under dependencies, add the package.
+//example
+	dependencies:
+	  flutter:
+		sdk: flutter
+	  http: ^0.12.0+2
+ 3. Save file then get dependencies on the main class. 
+ 4. import 'package:http/http.dart' on the file where you're gonna use the http package.
+ 5. also import 'dart:convert' on the same file.
+ 
+ 
+ 
+ # Using the HTTP package.
+ 1. In a async function, create a Response object. Name the variable anything you want.
+ 2. Put an "await" before the get() function.
+ 3. Inside the get() function, put this: 'https://jsonplaceholder.typicode.com/todos/1'
+ 4. After the line, create a map object and put inside a jsonDecode() function. 
+ 5. Inside the jsonDecode() function, get the variable name of your response objet and get the "body" property.
+ 6. You can now call your map variable.
+ 
+ # Creating a date time object.
+ 1. Let's assume that you already got the property from the world time api and gave it to a String variable.
+ 2. Create a DateTime object and give it a variable name.
+ 3. Equate it to an another DateTime. object then parse(). 
+ 4. Inside the parse function, give it the variable that you assigned the date time property.
+ 
+ # Adding an hour to the date time object.
+ 1. Get the variable name of your DateTime object then put a ".add()" to it.
+ 2. Add a Duration() function inside the add() function.
+ 3. Inside the duration() function, put "hours: " then put an integer right after it. 
+ //example:
+	void getTime() async
+  {
+    Response manila = await get("http://worldtimeapi.org/api/timezone/Asia/Manila");
+    Map time = jsonDecode(manila.body); // getting the properties and putting it in a map
+    String date = time["datetime"];	// getting the "datetime" property then putting it in a String
+    String offset = time["utc_offset"].substring(1,3); // getting the "utc_offset" property then putting it in a String
+													   // getting the numbers only by using substring()
 
+    DateTime dt = DateTime.parse(date); 	// creating a DateTime object.
+    dt = dt.add(Duration(hours: int.parse(offset)));	// add an hour to the current DateTime object.
+    print("Time in manila is $dt");
+  }
+	
+ 
 "********************WIDGETS********************"
 
 ***NOTICE***
