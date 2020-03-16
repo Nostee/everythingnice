@@ -1,0 +1,26 @@
+"OBSOLETE WIDGETS/PROCESSES"
+
+# Setting up a widget template.
+1. Create a new object of the Widget class.
+2. Return a widget.
+//example
+Widget myTemplate(x)
+{
+	return Card();
+}
+
+# Using the Map Function.
+	> It cycles through a list of data.
+	> Used in children property.
+	> It is an iterable so it should be converted into a list afterwards.
+//example
+children: name_of_variable.map((any_variable_name) {
+	return Widget(
+		//put anything here
+	);
+}).toList()
+
+//example for when calling the widget template
+x.map((y){
+	return myTemplate(y);
+	}).toList();

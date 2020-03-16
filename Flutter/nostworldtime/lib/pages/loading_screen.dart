@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import "dart:convert";
+import "package:nostworldtime/services/worldTime.dart";
+import "package:flutter_spinkit/flutter_spinkit.dart";
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -9,35 +9,45 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
 
-  void getTime() async
+  void setUp() async
   {
-    Response manila = await get("http://worldtimeapi.org/api/timezone/Asia/Manila");
-    Map time = jsonDecode(manila.body);
-    String date = time["datetime"];
-    String offset = time["utc_offset"].substring(1,3);
-
-    DateTime dt = DateTime.parse(date);
-    dt = dt.add(Duration(hours: int.parse(offset)));
-    print("Time in manila is $dt");
+    await Future.delayed(Duration(seconds: 2),() {print("Setting up for 2 seconds..");});
+    WorldTime wt = WorldTime(location: "Manila", country: "Asia/Manila");
+    await wt.getTime();
+    print(wt.currentTime);
+    Navigator.pushReplacementNamed(context, "/home", arguments: {
+      "location": wt.location,
+      "currentTime": wt.currentTime,
+      "dayTime": wt.dayTime,
+    });
   }
 
   @override
   void initState() {
     super.initState();
-    print("Getting data..");
-    getTime();
+    setUp();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text(
-          "LOADING",
-          style: TextStyle(
-            letterSpacing: 4
-          )
-        )
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SpinKitWanderingCubes(
+            color: Colors.black,
+            size: 50.0,
+            ),
+            SizedBox(height: 50),
+            Text(
+                "Loading",
+              style: TextStyle(
+                letterSpacing: 5
+              ),
+            )
+          ],
+        ),
       )
     );
   }
