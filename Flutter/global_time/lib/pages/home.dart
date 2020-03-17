@@ -18,7 +18,7 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
-  timeRefresh() async
+  void timeRefresh() async
   {
     bool x = true;
     while(x==true)

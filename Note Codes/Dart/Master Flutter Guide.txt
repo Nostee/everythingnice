@@ -250,12 +250,11 @@ onPressed: ()
 		dependencies:
 		  flutter:
 			sdk: flutter
-		  http: ^0.12.0+2
+		  http: ^0.12.0+4
  3. Save file then get dependencies on the main class. 
  4. import 'package:http/http.dart' on the file where you're gonna use the http package.
  5. also import 'dart:convert' on the same file.
 
- 
  # Using the HTTP package.
  1. In a future async function, create a Response object. Name the variable anything you want.
  2. Put an "await" before the get() function.
@@ -327,7 +326,6 @@ onPressed: ()
 	//example:
 	bool checker = *condition* ? true : false;
 
- # 
  
 "********************WIDGETS********************"
 
