@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "893752317315",
+    "firebase_url": "https://nostee-brew-crew.firebaseio.com",
+    "project_id": "nostee-brew-crew",
+    "storage_bucket": "nostee-brew-crew.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:893752317315:android:cb19b86be5dcb8199012b6",
+        "android_client_info": {
+          "package_name": "com.nostdoro.nosteebrewcrew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "893752317315-nuo5gpf9thhq1dnm1ifeldhs7qlf7n45.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPxe0rQ-fiXxZIvssNOEWmgBe8rsnl3YA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "893752317315-nuo5gpf9thhq1dnm1ifeldhs7qlf7n45.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
