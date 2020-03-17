@@ -1,6 +1,6 @@
-# nosteebrewcrew
+# nostee_brew_crew
 
-A brew crew app based on &quot;Net Ninja&#x27;s Brew Crew&quot;.
+A new Flutter project.
 
 ## Getting Started
 
