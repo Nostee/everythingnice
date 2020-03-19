@@ -1,10 +1,12 @@
 # Adding Firebase to your app
 1. Go to the firebase console and click "Add Firebase to your Android App".
-2. Follow the instructions there.
-3. After everything is done, go to "pubspec.yaml".
-4. Add this to dependecies: 
-> firebase_auth: ^0.14.0+5
-> cloud_firestore: ^0.12.9+4
-
+2. "Application ID" or "Android Package Name" is in (android/app/build.gradle)
+	> minimum sdk ver. should be 21.
+3. Follow the instructions there.
+4. After everything is done, go to "pubspec.yaml".
+5. Add this to dependecies: 
+> firebase_auth: ^0.15.5+2
+> cloud_firestore: ^0.13.4+2
+> firebase_core: ^0.4.4+3
 
 
