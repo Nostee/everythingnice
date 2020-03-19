@@ -1,8 +1,0 @@
-void main()
-{
-	List<String> names = ["Mariah","Loves","Jedi"];
-	names.add("Wow");
-	names.remove("Wow");
-
-	print(names);
-}
