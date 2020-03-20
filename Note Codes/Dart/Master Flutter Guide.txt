@@ -1,5 +1,4 @@
 # Creating the main() function of your flutter app.
-
 //example:
 void main() => startApp(MaterialApp(
 	home: *name of your class*()

@@ -1,4 +1,12 @@
-# Adding Firebase to your app
+# Setting Up
+1. Create this folders inside the "lib" folder.
+> models //for data to be stored. 
+> screens //for pages and interface.
+> services //for methods and functions related to the particular service.
+
+Note: Do not put directly the material app in the runApp().
+
+# Adding Firebase to your App
 1. Go to the firebase console and click "Add Firebase to your Android App".
 2. "Application ID" or "Android Package Name" is in (android/app/build.gradle)
 	> minimum sdk ver. should be 21.
@@ -8,5 +16,122 @@
 > firebase_auth: ^0.15.5+2
 > cloud_firestore: ^0.13.4+2
 > firebase_core: ^0.4.4+3
+
+# Create an Authenticator Service
+1. Create a new file named auth.dart (or name it whatever u want)
+2. import 'package:firebase_auth/firebase_auth.dart';
+3. Create a class.
+4. Create a Firebase property:
+> final FirebaseAuth _auth = FirebaseAuth.instance;
+5. All methods here should be:
+> future and async function.
+> try and catch.
+
+# Creating a User Object
+1. Create a class in the models folder.
+2. Name the class,User.
+3. Add a "uid" property that receives it.
+
+# Creating a function that returns a User object.
+User _userFromFirebase(FirebaseUser user){
+      return user != null ? User(uid: user.uid) : null;
+  }
+  
+Notes:
+> User is the custom class made that is in the models folder.
+> Its parameter is a FirebaseUser. 
+> It returns a data if it received a data. 
+
+# Sign in Anonymously Service Example Code: 
+// Note: Put this in your authenticator class.
+Future signInAnon() async
+{
+	try
+	{
+	  AuthResult result = await _auth.signInAnonymously();
+	  FirebaseUser user = result.user;
+	  return _userFromFirebase(FirebaseUser user); 
+	}
+	catch(e)
+	{
+	  print(e.toString());
+	  return null;
+	}
+}
+
+Notes:
+> Store the returned onbject in a dynamic variable.
+
+# Calling the Authenticator Class particularly the Sign In Anonymous Function
+// example: 
+onPressed: () async 
+{
+  dynamic data = await Auth().signInAnon();
+  if(data==null)
+  {
+	print("failed to sign in.");
+  }
+  else
+  {
+	print("signed in!");
+	print(data.uid);
+  }
+},
+
+# Creating a User Change Stream
+// Note: Put this in your authenticator class.
+Stream<User> get user 
+{
+	return _auth.onAuthStateChanged.map(_userFromFirebase);
+}
+
+# Using the Provider Package
+1. Add to the dependencies: provider: ^4.0.4
+2. import 'package:provider/provider.dart' and your custom object in the main class.
+3. Wrap the material app with StreamProvider.value<>
+4. Inisde the value <>, indicate the object type. (The User Object)
+5. Add a value property which contains the Authenticator class with the stream fetched data.
+// example
+return StreamProvider<User>.value(
+    value: Auth().id,
+      child: MaterialApp
+	  (
+		  routes: 
+		  {
+			"/" : (context) => Wrapper(),
+		  }	
+      )
+    );
+  
+# Getting the data provided by the Provider
+1. Initialize a dynamic variable.
+2. Equate it to "Provider.of<User>(context);"
+final dynamic user = Provider.of<User>(context);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
