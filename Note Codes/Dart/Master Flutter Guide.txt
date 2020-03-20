@@ -1,5 +1,4 @@
 # Creating the main() function of your flutter app.
-
 //example:
 void main() => startApp(MaterialApp(
 	home: *name of your class*()
@@ -369,6 +368,7 @@ onPressed: ()
 					  - it contains a Color. object: Color.*any color*[*any value*]
 							// eg. Colors.red[500] 
 	> elevation - set to 0.0 to remove the drop shadow.
+	> actions - it contains a list of widgets.
 	
 # Widget: FloatingActionButton() - it handles the info of the floatingActionButton property.
 	Properties:
