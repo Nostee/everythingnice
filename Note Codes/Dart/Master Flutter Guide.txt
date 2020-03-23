@@ -1,6 +1,6 @@
 # Creating the main() function of your flutter app.
 //example:
-void main() => startApp(MaterialApp(
+void main() => runApp(MaterialApp(
 	home: *name of your class*()
 ));
 
@@ -156,7 +156,7 @@ onPressed: ()
 	onPressed: () {
 		Navigator.pushNamed(context, "/whateverlocation"); //stacks to the current screen
 		/or/
-		Navigator.pushReplacedNamed(context, "/whateverlocation"); //replaces the current screen
+		Navigator.pushReplacementNamed(context, "/whateverlocation"); //replaces the current screen
 		/or/
 		Naviagtor.pop(context, {}) //goes back to the initial screen
 	}
@@ -324,8 +324,17 @@ onPressed: ()
  1. Shorcut if condition looks like this:
 	//example:
 	bool checker = *condition* ? true : false;
+	
+ # Creating constants.
+ Note: Use constants if you have multiple shared codes.
+ 1. Create a folder named shared
+ 2. Create a const variable
+ 3. Put a widget inside of it.
+ 4. Import the folder in the class where you'll be using the constants.
+ 5. Just call the variable name when using it.
+ 6. When adding properties, just add "variable_name.copyWith(property: value)"
 
- 
+
 "********************WIDGETS********************"
 
 ***NOTICE***
@@ -349,6 +358,13 @@ onPressed: ()
 			   "/anything" stands for a route. 
     > initialRoute - It overrides the base route. Do not put with the home property.
 				   - It contains a string value of the page. eg. "/home"
+    > theme - holds the ThemeData() widget.
+
+# Widget: ThemeData() - it holds the properties for changing the overall theme.
+	Properties:
+	> primaryColor
+	> accentColor
+	> cursorColor
 	
 # Widget: Scaffold() - it wraps our widgets into one whole page.
 	Properties:
@@ -416,7 +432,7 @@ fonts:
 	Properties:
 	> image - it handles a widget called, AssetImage() or NetworkImage().
 	
-# Widget: AssetImage() - it handles a string inside the () that loads a local image using its path.
+# Widget: AssetImage() - it handles a string inside the () that loads a local image using its path. It could also hold height and width.
 # Widget: NetworkImage() - it handles a string inside the () that loads an online image using its url/location.
 	
 ***USING LOCAL IMAGES***
@@ -549,7 +565,7 @@ assets:
 			  return ListTile()
 			},
 
-# Widget ListTile() - it handles your items to be displayed in a list.
+# Widget: ListTile() - it handles your items to be displayed in a list.
 	Properties:
 	> onTap - it handles a function like onPressed.
 	> title - it handles a text widget to be displayed.
@@ -559,7 +575,53 @@ assets:
 		onTap: () {}
 		title: Text(variablename[index].propertyname)
 		)
-		
+
+# Widget: Form() - it acts as a container for grouping and validating multiple form fields.
+	Properties:
+	> child - preferrably it holds a Column().
+	> key - it holds the variable for the GlobalKey.
+	// the column holds several TextFormField().
+
+# Widget: TextFormField() - it acts as a textfield where the user can input any string.
+	Properties:
+	> onChanged - it holds a function where inside the parenthesis is the variable that will contain the data of the textfield.
+				- inside the function is a setState() function that transfers the fetched data in a local variable
+	> obscureText - it holds a boolean that determines if the text showed is encrypted or not.
+	> decoration - it holds the widget, InputDecoration().
+	> style - it allows to customize the text to be displayed. 
+			- it contans the widget, TextStyle().
+	> validator - it holds a function that contains a value inside the paranthesis.
+			
+# Widget: InputDecoration() - it holds properties for decorating the field.
+	Properties:
+	> labelText - it's a text to be displayed on the top with low opacity on the field if not focused or null.
+	> hintText  it's a text to be displayed on the field with low opacity on the field if not focused or null.
+	> labelStyle - it holds the widget, TextStyle().
+	> filled - boolean if it is a solid field.
+	> fillColor - determines the color of the field.
+	
+	//example:
+	TextFormField
+	(
+		decoration: InputDecoration(
+		  labelText: "Email",
+		  labelStyle: TextStyle(
+			fontSize: 25,
+			letterSpacing: 3,
+			fontWeight: FontWeight.w300,
+		  )
+		),
+		onChanged: (value) {
+		  setState((){
+			email = value;
+		  });
+		},
+		style: TextStyle(
+		  fontSize: 30,
+		  letterSpacing: 2,
+		  fontWeight: FontWeight.w300
+		),
+	),
 	
 	
 	

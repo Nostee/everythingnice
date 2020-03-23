@@ -1,8 +1,12 @@
 # Setting Up
 1. Create this folders inside the "lib" folder.
+> loaders //for classes that will load data from the network
 > models //for data to be stored. 
 > screens //for pages and interface.
 > services //for methods and functions related to the particular service.
+2. Create the main file for routes.
+3. Create an authenticate class. (For authenticating)
+4. Create a checker class. (To check if user is authenticated)
 
 Note: Do not put directly the material app in the runApp().
 
@@ -16,6 +20,7 @@ Note: Do not put directly the material app in the runApp().
 > firebase_auth: ^0.15.5+2
 > cloud_firestore: ^0.13.4+2
 > firebase_core: ^0.4.4+3
+> provider: ^4.0.4
 
 # Create an Authenticator Service
 1. Create a new file named auth.dart (or name it whatever u want)
@@ -44,13 +49,13 @@ Notes:
 
 # Sign in Anonymously Service Example Code: 
 // Note: Put this in your authenticator class.
-Future signInAnon() async
+Future<dynamic> signInAnon() async
 {
 	try
 	{
 	  AuthResult result = await _auth.signInAnonymously();
 	  FirebaseUser user = result.user;
-	  return _userFromFirebase(FirebaseUser user); 
+	  return _userFromFirebase(user); 
 	}
 	catch(e)
 	{
@@ -77,21 +82,33 @@ Future signOut() async
 	}
 }
 
-# Calling the Authenticator Class particularly the Sign In Anonymous Function
-// example: 
-onPressed: () async 
+# Register Example Code:
+Future register(String email,String password) async
 {
-  dynamic data = await Auth().signInAnon();
-  if(data==null)
-  {
-	print("failed to sign in.");
-  }
-  else
-  {
-	print("signed in!");
-	print(data.uid);
-  }
-},
+	AuthResult result = await fba.createUserWithEmailAndPassword(email: email, password: password);
+	FirebaseUser user = result.user;
+}
+
+# Calling the Authenticator Class through the Loader Class
+// in the UI class:
+onPressed: () async 
+{  
+	dynamic fetchedData = await Navigator.pushNamed(context, "/LoadingUser");
+	print("Currently signed in: ${fetchedData["data"]}");
+}, 
+
+// in the Loader class:
+@override
+void initState() { 
+	super.initState();
+	delayedRun();
+}
+
+Future<void> delayedRun() async
+{
+	dynamic currentUser = await Authenticate().signInAnon();
+	Navigator.pop(context, {"data": currentUser});
+}
 
 # Creating a User Change Stream
 // Note: Put this in your authenticator service class.
@@ -120,16 +137,47 @@ return StreamProvider<User>.value(
   
 # Getting the data provided by the Provider
 1. import 'package:provider/provider.dart'
-2. Initialize a dynamic variable.
+2. Initialize a final dynamic variable.
 3. Equate it to "Provider.of<User>(context);"
 // example
 final dynamic user = Provider.of<User>(context);
 
+# Validating User Input in Form Fields
+1. Create a final variable containing GlobalKey object that has <FormState>() in the class where you use the Form() widget.
+> final formKey = GlobalKey<FormState>();
+2. Put a key property and put the formKey inside it. (do this literally)
+3. Inside a function (prefferably in onPressed), create an if statement. (this is inside where you're gonna get all the values of the form)
+4. The condition is:
+> if(formKey.currentState.validate())
+> the condition statement returns true or false.
+5. Create a validator property inside the TextFormFields that has a function with the value inside the parenthesis.
+6. Return a null in the validator function if it's valid. 
 
+# Creating Database Service
+1. Inside the services folder, create a database.dart
+2. import 'package:cloud_firestore/cloud_firestore.dart';
+3. Create a class.
+4. Inside the class create a final variable that will contain the uid.
+5. Create a constructor that fetches the data.
+6. Inside the class, create this variable:
+	> final CollectionReference var = Firestore.instance.collection('name of your collection');
+	Note: This acts as your collection reference in the firestore.
 
+# UpdateUserData Example Code
+Future updateUserData(String sugars,String name,int strength) async
+{
+	return await var.document(uid).setData({
+		"sugars" : sugars,
+		"name" : name,
+		"strength" : strength,
+	});
+}
 
+//Call the function in the authenticator service when registering a user.
+await Database(uid: user.uid).updateUserData('e','New Member',50);
 
-
+Note: var is the collection reference.
+	 - uid is to determine which user has the data
 
 
 
