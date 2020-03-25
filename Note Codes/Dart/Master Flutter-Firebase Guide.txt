@@ -173,23 +173,62 @@ Future updateUserData(String sugars,String name,int strength) async
 	});
 }
 
-//Call the function in the authenticator service when registering a user.
+// Call the function in the authenticator service when registering a user.
 await Database(uid: user.uid).updateUserData('e','New Member',50);
 
 Note: var is the collection reference.
 	 - uid is to determine which user has the data
 
+# Creating model for the extracted data from the database.
+ 1. Create a file in your models folder.
+ 2. Create your own class with final variables/properties representing each data you want to extract.
+ 3. Create constructors that will pass on the data to the variables.
+ 
+ # Putting data in your custom model.
+ Note: Put this inside your Database service class.
+ 1. Import your custom model.
+ 2. Create this code:
+ // Example only
+ List<*CustomModelName*> var(QuerySnapshot snapshot)
+  {
+    return snapshot.documents.map((doc){
+      return CustomModelName(
+        property1: doc.data["databaseproperty1"] ?? '',
+        property2: doc.data["databaseproperty2"] ?? '',
+        property3: doc.data["databaseproperty3"] ?? '',
+      );
+    }).toList();
+  }
+  Notes: > the ?? means that if the data is null, it will return a '' or 0 instead. (Depends on the data type of the variable);
+		 > QuerySnapshot gets all the data in the database.
+		 > The Stream will determine which document.
 
-
-
-
-
-
-
-
-
-
-
+# Streaming Data from the Database
+ Stream<List<*CustomModelName*>> get info
+ {
+	 return var.snapshots().map(*variableNameOfList*); 
+ } 
+ Notes: the var here is the collection reference.
+ 
+ // Using the function in the screen where you're gonna use the data.
+ 1. import the database service.
+ 2. import cloud firestore.
+ 3. Wrap your primary widget with StreamProvider<QuerySnapshot>.value.
+ 4. Create a value property that contains the Database class and the fetched data.
+ // example code:
+	return StreamProvider<List<*CustomModelName*>>.value(
+          value: Database().info,
+	
+Note: Once you do this, you can now access the data through 
+	  final myData = Provider.of<List<*CustomModelName*>>(context);
+ 
+ // Example Code for looping through the documents
+ for(var x in myData)
+ {
+	 print(x.data);
+ }
+ 
+ 
 
 
 

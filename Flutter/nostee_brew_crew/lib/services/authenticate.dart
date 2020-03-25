@@ -14,6 +14,7 @@ class Authenticate
     return user != null ? User(uid: user.uid) : null;
   }
 
+  // this is streaming process
   Stream<User> get user
   {
     return fba.onAuthStateChanged.map(currentUser);
