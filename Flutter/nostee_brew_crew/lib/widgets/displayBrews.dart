@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:nostee_brew_crew/models/flavors.dart';
-import 'package:nostee_brew_crew/models/user.dart';
 
 class DisplayBrews extends StatefulWidget {
   @override
@@ -13,14 +12,27 @@ class _DisplayBrewsState extends State<DisplayBrews> {
   Widget build(BuildContext context) {
     print("Provider Stream processing..");
     final myData = Provider.of<List<Flavors>>(context);
-    print(Provider.of<User>(context));
-    return myData!= null ? ListView.builder(
-      itemCount: myData.length,
-      itemBuilder: (context,index){
-        return ListTile(
-          title: Text(myData[index].name)
-        );
-      }, 
+    return myData!= null ? Container(
+      child: ListView.builder(
+        itemCount: myData.length,
+        itemBuilder: (context,index){
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+                leading: CircleAvatar(
+                  radius: 30,
+                  backgroundColor: Colors.brown[myData[index].strength],
+                ),
+                title: Text(
+                  myData[index].name,
+                  ),
+                subtitle: Text(
+                  "Takes ${myData[index].sugars} sugar(s)"
+                ),
+            ),
+          );
+        }, 
+      ),
     ) : Container();
   }
 }

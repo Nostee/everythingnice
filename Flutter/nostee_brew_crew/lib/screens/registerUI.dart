@@ -87,6 +87,7 @@ class _RegisterUIState extends State<RegisterUI> {
                           ],
                         ),
                         SizedBox(width: 50),
+                        // THIS IS BUTTON
                         FlatButton(
                           onPressed: () async{
                             print("Email is $email");

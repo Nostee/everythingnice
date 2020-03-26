@@ -31,6 +31,7 @@ class _LoginUIState extends State<LoginUI> {
                       Row(
                         children: <Widget>[
                             CircleAvatar(
+                              backgroundColor: Colors.black87,
                               backgroundImage: AssetImage("assets/coffee_beans.jpg"),
                               radius: 60
                             ),
@@ -124,7 +125,6 @@ class _LoginUIState extends State<LoginUI> {
                                 "password" : password
                               } );
                               print("the data right now is $data");
-                              //print("Currently signed in: ${data.uid}");
                               if(data["data"]=="Failed!")
                               {
                                 errorMessage = "WRONG EMAIL OR PASSWORD.";

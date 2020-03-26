@@ -4,6 +4,8 @@
 > models //for data to be stored. 
 > screens //for pages and interface.
 > services //for methods and functions related to the particular service.
+> shared //for constants
+> widgets //for seperate widgets
 2. Create the main file for routes.
 3. Create an authenticate class. (For authenticating)
 4. Create a checker class. (To check if user is authenticated)
@@ -184,7 +186,7 @@ Note: var is the collection reference.
  2. Create your own class with final variables/properties representing each data you want to extract.
  3. Create constructors that will pass on the data to the variables.
  
- # Putting data in your custom model.
+ # Putting data in your custom model. (LIST VERSION) //Getting all data from all users.
  Note: Put this inside your Database service class.
  1. Import your custom model.
  2. Create this code:
@@ -202,18 +204,40 @@ Note: var is the collection reference.
   Notes: > the ?? means that if the data is null, it will return a '' or 0 instead. (Depends on the data type of the variable);
 		 > QuerySnapshot gets all the data in the database.
 		 > The Stream will determine which document.
-
+		 
+ # Putting data in your custom model. (NORMAL VERSION) //Getting all data from a single user
+ Note: Put this inside your Database service class.
+ 1. Import your custom model.
+ 2. Create this code:
+ // Example only
+ CustomModelName var(DocumentSnapshot snapshot)
+  {
+    return CustomModelName(
+		property1: var or snapshot.data['name of database property'],
+		property1: var or snapshot.data['name of database property'],
+		property1: var or snapshot.data['name of database property'],
+	)
+  }
+  
 # Streaming Data from the Database
  Stream<List<*CustomModelName*>> get info
  {
 	 return var.snapshots().map(*variableNameOfList*); 
  } 
+ 
+// ----------------- or -------------------
+ 
+ Stream<UserData> get brewData
+ {
+    return var.document(uid).snapshots().map(*variableNameOfModel*);
+ }
+
  Notes: the var here is the collection reference.
  
- // Using the function in the screen where you're gonna use the data.
+ # Using the function in the screen where you're gonna use the data.
  1. import the database service.
  2. import cloud firestore.
- 3. Wrap your primary widget with StreamProvider<QuerySnapshot>.value.
+ 3. Wrap your primary widget with StreamProvider<>.value.
  4. Create a value property that contains the Database class and the fetched data.
  // example code:
 	return StreamProvider<List<*CustomModelName*>>.value(
@@ -221,12 +245,26 @@ Note: var is the collection reference.
 	
 Note: Once you do this, you can now access the data through 
 	  final myData = Provider.of<List<*CustomModelName*>>(context);
+	  
+   // Example Code for looping through the documents
+	 for(var x in myData)
+	 {
+		 print(x.data);
+	 }
+
+ # Other way of getting the data through StreamBuilder
+ 1. Wrap your primary widget with StreamBuilder<*CustomModelName*>
+ 2. Create a stream property that holds the Database service class.
+ 3. Create a builder property (example below)
+	 builder: (context,snapshot) {
+		 return ANY_WIDGET_TREE;
+	 }
+	 // NOTE: The snapshop here holds the data.
+		> to access the data, just do this: snapshot.data
+		> if accessing a property: snapshot.data.property
+
  
- // Example Code for looping through the documents
- for(var x in myData)
- {
-	 print(x.data);
- }
+
  
  
 

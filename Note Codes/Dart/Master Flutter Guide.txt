@@ -560,7 +560,7 @@ assets:
 	> itemBuilder - it contains a function that handles a context,index and an another function that returns a widget.
 		//example:
 		body: ListView.builder(
-			itemCount: variablename.length,
+			itemCount: variablename.length,DisplayBrews()
 			itemBuilder: (context,index) {
 			  return ListTile()
 			},
@@ -591,6 +591,7 @@ assets:
 	> style - it allows to customize the text to be displayed. 
 			- it contans the widget, TextStyle().
 	> validator - it holds a function that contains a value inside the paranthesis.
+	> autofocus - it holds a boolean that determines if it is automatically focused.
 			
 # Widget: InputDecoration() - it holds properties for decorating the field.
 	Properties:
@@ -622,9 +623,66 @@ assets:
 		  fontWeight: FontWeight.w300
 		),
 	),
+
+# Widget: DropDownButtonFormField() - it holds a list.
+	Properties:
+	> items - it contains map variable that returns a DropdownMenuItem() and converted into a list.
+	> value - it is the value that will be displayed at the field.
+	> onChanged - assign a function here with a value inside the paranthesis.
+	> decoration - it holds the widget, InputDecoration().
+# Widget: DrownDownMenuItem() - it holds a value responsible for giving an item to the field.
+	Properties:
+	> value - it contains the variable of the data.
+	> child - it holds a text that containts the variable.
+	//example
+	DropdownButtonFormField(
+		value: currentSugars ?? '0',
+		items: sugars.map((sugar){
+		  return DropdownMenuItem(
+			value: sugar,
+			child: Text("$sugar sugars")
+		  );
+		}).toList(),
+		onChanged: (val) {
+		  currentSugars = val;
+		  FocusScope.of(context).requestFocus(new FocusNode());
+		  //showSettings();
+		},
+	  ),
+	 //NOTE: the ?? stands for if the value is null, it will display the latter instead.
+
+# Widget: Slider() - it is a slider that the user can slide to obtain value.
+	Properties:
+	
+	> min - contains an int that represents the minimum value.
+	> max - contains an int that represents the maximum value.
+	> divisions - contains an in that represents the divisions.
+	> onChanged - contains a function.
+	> activeColor: contains a Color object of the slider.
+	> inactiveColor: contains a Color object of the line.
 	
 	
+
+
+ "********************SPECIAL SCREENS********************"
+ 
+ # showModalBottomSheet - it slides a screen that starts at the bottom.
+1. Create a function inside the Widget build.
+2. Do this code:
+	void showSettings()
+    {
+      showModalBottomSheet(context: context, builder: (context) {
+        return ANY_WIDGET_TREE;
+      });
+    }
+3. Return any widget you want.
+
+
+ "********************USEFUL FUNCTIONS********************"
+ FocusScope.of(context).requestFocus(new FocusNode()); // it removes the focus
 	
+"********************TIPS********************"
+1. In order for the ListView.builder be inside the column, wrap it with Expanded().
 	
 	
 
