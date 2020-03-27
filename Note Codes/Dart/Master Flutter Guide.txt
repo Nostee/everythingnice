@@ -223,7 +223,7 @@ onPressed: ()
 5. If you want to finish a function first before moving on to the next function, put an "await" before the line.
 6. Always wrap void with Future.
 	//example
-	Future<void> delayedRun() async
+	  Future<void> delayedRun() async
 	  {
 		await Future.delayed(Duration(seconds: 3),() {
 		  print("3 seconds has passed.");
@@ -356,6 +356,7 @@ onPressed: ()
 	}
 		Notes: "/" stands for a base route. Basically, the app starts on the base route.
 			   "/anything" stands for a route. 
+
     > initialRoute - It overrides the base route. Do not put with the home property.
 				   - It contains a string value of the page. eg. "/home"
     > theme - holds the ThemeData() widget.
