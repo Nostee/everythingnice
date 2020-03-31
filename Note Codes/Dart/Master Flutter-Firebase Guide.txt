@@ -66,6 +66,21 @@ Future<dynamic> signInAnon() async
 	}
 }
 
+# Sign in with Email Example Code:
+ Future login(String email,String password) async
+  {
+    try
+    {
+      AuthResult result = await fba.signInWithEmailAndPassword(email: email, password: password);
+      FirebaseUser user = result.user;
+      return currentUser(user);
+    }
+    catch(e)
+    {
+      return "Failed!";
+    }
+  }
+
 Notes:
 > Store the returned object in a dynamic variable.
 
@@ -122,7 +137,7 @@ Stream<User> get user
 # Using the Provider Package
 1. Add to the dependencies: provider: ^4.0.4
 2. import 'package:provider/provider.dart' and your custom object in the main class.
-3. Wrap the material app with StreamProvider.value<>
+3. Wrap the material app with StreamProvider<>.value
 4. Inisde the value <>, indicate the object type. (The User Object)
 5. Add a value property which contains the Authenticator class with the stream fetched data.
 // example

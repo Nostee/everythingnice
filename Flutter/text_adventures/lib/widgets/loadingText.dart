@@ -41,14 +41,14 @@ class _LoadingTextState extends State<LoadingText> {
   Widget build(BuildContext context) {
     changeText();
     return ctr==true ? Text(
-      " SEARCHING FOR ADVENTURERS..",
+      " SETTING UP THE CAMPFIRE..",
       style: TextStyle(
         fontFamily: "Pixelated",
         fontSize: 20,
         color: Colors.white
       )
       ): Text(
-      " SEARCHING FOR ADVENTURERS...",
+      " SETTING UP THE CAMPFIRE...",
       style: TextStyle(
         fontFamily: "Pixelated",
         fontSize: 20,
