@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// this is the login interface
 
 class Login extends StatefulWidget {
   @override
@@ -12,7 +13,9 @@ class _LoginState extends State<Login> {
   String email;
   String password;
   bool toggle = true;
-  
+  Map errorData;
+  String error = "";
+
   void login()
   {
     if(formKey.currentState.validate())
@@ -24,7 +27,7 @@ class _LoginState extends State<Login> {
     }
     else
     {
-      print("Login failed."); // debug
+      print("(login.dart)Login failed."); // debug
     }
   }
 
@@ -146,6 +149,11 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    errorData = ModalRoute.of(context).settings.arguments;
+    if(errorData!=null)
+    {
+      error = errorData["error"];
+    }
     return Scaffold(
       backgroundColor: Colors.grey[900],
       body: SafeArea(
@@ -197,7 +205,16 @@ class _LoginState extends State<Login> {
                     ),
                   ],
                 ),
-                SizedBox(height: 70),
+                SizedBox(height: 30),
+                Center(
+                  child: Text(
+                    error,
+                    style: TextStyle(
+                      color: Colors.red
+                    )
+                    )
+                ),
+                SizedBox(height: 25),
                 loginForm()
             ],
           ),

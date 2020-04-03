@@ -4,6 +4,8 @@ import 'package:text_adventures/widgets/loadingText.dart';
 import 'package:provider/provider.dart';
 import 'package:text_adventures/models/user.dart';
 
+// this is the first loading screen that shows up to determine if the user is logged in or not
+
 class LoaderAuthenticate extends StatefulWidget {
   @override
   _LoaderAuthenticateState createState() => _LoaderAuthenticateState();
@@ -35,7 +37,11 @@ class _LoaderAuthenticateState extends State<LoaderAuthenticate> {
   @override
   Widget build(BuildContext context) {
     user = Provider.of<UserLogin>(context);
-    print("Fetched data of UserLogin provider: $user"); // debug
+    print("(loaderAuthenticate.dart)Fetched data of UserLogin provider: $user"); // debug
+    if(user!=null)
+    {
+      print("(loaderAuthenticate.dart)Current UID: ${user.uid}"); // debug
+    }
     changeScreen();
     return Scaffold(
         backgroundColor: Colors.grey[900],

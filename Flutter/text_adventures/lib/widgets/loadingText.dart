@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-// NOTE: Slight buggy but it will do. 
-// NOTE: Responsible for the varying text under the spinkit.
+// this is responsible for the varying text under the spinkit.
+// note: Slight buggy but it will do. 
 
 class LoadingText extends StatefulWidget {
   @override

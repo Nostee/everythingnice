@@ -3,6 +3,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:text_adventures/services/authenticator.dart';
 import 'package:text_adventures/widgets/loadingText.dart';
 
+// this is called by register.dart
+
 class LoaderRegister extends StatefulWidget {
   @override
   _LoaderRegisterState createState() => _LoaderRegisterState();
@@ -11,15 +13,18 @@ class LoaderRegister extends StatefulWidget {
 class _LoaderRegisterState extends State<LoaderRegister> {
   Map fetchedData;
   dynamic temporaryData;
+  dynamic temporaryData2;
+  dynamic uid;
+
   Future<void> fetchingData() async
   {
     try
     {
-      print("Fetched mapped data is $fetchedData"); // debug
-      print("Trying to register with these data..."); // debug
+      print("(loaderRegister.dart)Fetched mapped data is $fetchedData"); // debug
+      print("(loaderRegister.dart)Trying to register with these data..."); // debug
       temporaryData = await Authenticator().register(fetchedData["email"],fetchedData["password"]);
-      print("Temporary data: $temporaryData"); // debug
-      // temporary: Username is not yet passed.
+      print("(loaderRegister.dart)Temporary data: $temporaryData"); // debug
+
       if(temporaryData!=null)
       {
         Navigator.pop(context);
@@ -34,7 +39,8 @@ class _LoaderRegisterState extends State<LoaderRegister> {
     }
     catch(e)
     {
-      print("An error occured!"); // debug
+      print("(loaderRegister.dart)An error occured!"); // debug
+      print("(loaderRegister.dart)ERROR: $e"); // debug
     }
   }
 

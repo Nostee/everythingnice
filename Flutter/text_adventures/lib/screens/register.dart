@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-  // THIS IS THE LOGIN INTERFACE WIDGET
+  // this is the register interface
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({
@@ -35,7 +35,7 @@ class _RegisterFormState extends State<RegisterForm> {
     }
     else
     {
-      print("Validation results: Failed."); // debug
+      print("(register.dart)Validation results: Failed."); // debug
       tip = "";
       setState(() {});
     }

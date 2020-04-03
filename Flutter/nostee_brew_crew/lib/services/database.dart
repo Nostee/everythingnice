@@ -36,7 +36,7 @@ class Database
     return brews.snapshots().map(flavorList);
   }
 
-  // THIS IS FOR PASSING THE DATA IN THE DATABASE TO A CUSTOM MODEL (SINGLE USERS)
+  // THIS IS FOR PASSING THE DATA IN THE DATABASE TO A CUSTOM MODEL (SINGLE USER)
   UserData myUserData(DocumentSnapshot snapshot)
   {
     return UserData(

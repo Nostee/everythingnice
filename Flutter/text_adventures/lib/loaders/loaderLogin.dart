@@ -3,6 +3,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:text_adventures/services/authenticator.dart';
 import 'package:text_adventures/widgets/loadingText.dart';
 
+// this is called by login.dart
+
 class LoaderLogin extends StatefulWidget {
   @override
   _LoaderLoginState createState() => _LoaderLoginState();
@@ -16,22 +18,25 @@ class _LoaderLoginState extends State<LoaderLogin> {
     await Future.delayed(Duration(seconds: 1),() async{
 		  try
       {
-        print("Fetched mapped data is $fetchedData"); // debug
-        print("Trying to login with these data..."); // debug
+        print("(loaderLogin.dart)Fetched mapped data is $fetchedData"); // debug
+        print("(loaderLogin.dart)Trying to login with these data..."); // debug
         temporaryData = await Authenticator().login(fetchedData["email"],fetchedData["password"]);
-        print("Temporary data: $temporaryData"); // debug   
+        print("(loaderLogin.dart)Temporary data: $temporaryData"); // debug   
         if(temporaryData!=null&&temporaryData!="Failed!")
         {
           Navigator.pushReplacementNamed(context, "home.dart");
         }
         else
         {
-          Navigator.pushReplacementNamed(context, "login.dart");
+          Navigator.pushReplacementNamed(context, "login.dart",arguments: {
+            'error' : "Wrong email or password, dummy."
+          });
+
         }
       }
       catch(e)
       {
-        print("An error occured! Details: \n$e"); // debug
+        print("(loaderLogin.dart)An error occured! Details: \n$e"); // debug
       }
 		});
   }

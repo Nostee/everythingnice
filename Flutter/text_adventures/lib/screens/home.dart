@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:text_adventures/services/authenticator.dart';
+import 'package:text_adventures/widgets/setupCharacter.dart';
+
+// this is the home interface
 
 class Home extends StatefulWidget {
   @override
@@ -8,29 +11,37 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  // temporary
+  bool toggle = true;
+
   void signOut()
   {
     dynamic check = Authenticator().signOut();
-    print("The data in the dynamic check is: $check"); // debug
+    print("(home.dart)The data in the dynamic check is: $check"); // debug
     if(check!=null)
     {
       Navigator.pushReplacementNamed(context, "login.dart");
     }
     else{
-      print("Logout failed."); // debug
+      print("(home.dart)Logout failed."); // debug
     }
   }
-
+  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // temporary
+    return toggle == true ? Scaffold(
+      backgroundColor: Colors.black54,
       appBar: AppBar(
-        title: Text("This is the homescreen."),
+        title: Text(
+          "HOME CAMP",
+          style: TextStyle(
+            letterSpacing: 6
+          )
+          ),
         actions: <Widget>[
           FlatButton(onPressed: (){signOut();}, 
           child: Text(
-            "Sign out",
+            "SIGN OUT",
             style: TextStyle(
               color: Colors.white
               )
@@ -38,6 +49,14 @@ class _HomeState extends State<Home> {
             )
         ],
       ),
-    );
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/campfirebg.gif"),
+            fit: BoxFit.cover
+          )
+        ),
+      )
+    ) : SetupCharacter();
   }
 }
