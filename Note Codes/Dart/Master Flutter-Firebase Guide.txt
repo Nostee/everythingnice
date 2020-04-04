@@ -1,11 +1,11 @@
 # Setting Up
 1. Create this folders inside the "lib" folder.
-> loaders //for classes that will load data from the network
-> models //for data to be stored. 
-> screens //for pages and interface.
-> services //for methods and functions related to the particular service.
-> shared //for constants
-> widgets //for seperate widgets
+> loaders // Note: for classes that will load data from the network
+> models // Note: for data to be stored. 
+> screens // Note: for pages and interface.
+> services // Note: for methods and functions related to the particular service.
+> shared // Note: for constants
+> widgets // Note: for seperate widgets
 2. Create the main file for routes.
 3. Create an authenticate class. (For authenticating)
 4. Create a checker class. (To check if user is authenticated)
@@ -18,7 +18,7 @@ Note: Do not put directly the material app in the runApp().
 	> minimum sdk ver. should be 21.
 3. Follow the instructions there.
 4. After everything is done, go to "pubspec.yaml".
-5. Add this to dependecies: 
+5. Add this to dependencies: 
 > firebase_auth: ^0.15.5+2
 > cloud_firestore: ^0.13.4+2
 > firebase_core: ^0.4.4+3
@@ -36,17 +36,15 @@ Note: Do not put directly the material app in the runApp().
 
 # Creating a User Model
 1. Create a class in the models folder.
-2. Name the class,User.
+2. Name the class, User.
 3. Add a "uid" property that receives the data when called.
 
 # Creating a function that gives a property to the User Model. 
-// Note: Put this in your authenticator service class.
 User _userFromFirebase(FirebaseUser user){
       return user != null ? User(uid: user.uid) : null;
   }
   
 # Creating a User Change Stream
-// Note: Put this in your authenticator service class.
 Stream<User> get user 
 {
 	return auth.onAuthStateChanged.map(_userFromFirebase);
@@ -58,7 +56,6 @@ Notes:
 > It returns a data if it received a data. 
 
 # Sign in Anonymously Service Example Code: 
-// Note: Put this in your authenticator class.
 Future<dynamic> signInAnon() async
 {
 	try
@@ -75,7 +72,6 @@ Future<dynamic> signInAnon() async
 }
 
 # Sign in with Email Example Code:
-// Note: Store the returned object in a dynamic variable.
 Future login(String email,String password) async
 {
 	try
@@ -91,7 +87,6 @@ Future login(String email,String password) async
 }
 
 # Sign Out Example Code:
-// Note: Put this in your authenticator class.
 Future signOut() async
 {
 	try
@@ -164,8 +159,7 @@ await Database(uid: user.uid).updateUserData('e','New Member',50);
 2. Create your own class with final variables/properties representing each data you want to extract.
 3. Create constructors that will pass on the data to the variables.
 
-# Putting data in your custom model. (LIST VERSION) //Getting all data from all users.
-// Note: Put this inside your Database service class.
+# Putting data in your custom model. (ALL USER) 
 1. Import your custom model.
 2. Create this code:
 // Note: Example only
@@ -184,14 +178,13 @@ Notes: > the ?? means that if the data is null, it will return a '' or 0 instead
 	 > The Stream will determine which document.
  
  
-# Streaming Data from the Database (LIST VERSION)
-// Note: Put this inside your Database service class.
+# Streaming Data from the Database (ALL USER)
 Stream<List<*CustomModelName*>> get var
 {
 return var.snapshots().map(*variableNameOfList*); 
 } 
 
-# Putting data in your custom model. (SINGLE VERSION) //Getting all data from a single user
+# Putting Data in your custom model. (SINGLE USER)
 CustomModelName var(DocumentSnapshot snapshot)
 {
 return CustomModelName(
@@ -201,43 +194,45 @@ return CustomModelName(
 )
 }
   
-# Streaming Data from the Database (SINGLE VERSION)
-Stream<UserData> get brewData 
+# Streaming Data from the Database (SINGLE USER)
+Stream<CustomModelName> get brewData 
 {
 return var.document(uid).snapshots().map(*variableNameOfModel*);
 }
 
 // Note: the var here is the collection reference.
 
-# Using the function in the screen where you're gonna use the data.
-1. import the database service.
+# Using the Provider to get the Streamed Data
+1. import the service where you streamed the data.
 2. import cloud firestore.
 3. Wrap your primary widget with StreamProvider<>.value.
 4. Create a value property that contains the Database/Authenticate class and the fetched data.
-// example code:
+// Note: example code:
 return StreamProvider<List<*CustomModelName*>>.value(
 	  value: Database().var, 
 // Note: the var is whatever the variable is fetched by get.
 	  
-// Note: Once you do this, you can now access the data through 
-	  final myData = Provider.of<List<Model>>(context); //if all data from the users
-					// or 
-				   = Provider.of<Model>(context);  //singe data from the user
-	  
+// Note: Once you do this, you can now access the data through...
+// Note: if all data from the users
+final dynamic myData = Provider.of<List<Model>>(context); 
 // Note: Example Code for looping through the data of the listed model 
-	 for(var x in myData)
-	 {
-		 print(x.data);
-	 }
+for(var x in myData)
+{
+	print(x.property);
+}
+
+// Note: if single data from the user
+final dynamic myData = Provider.of<Model>(context);  
+print(myData.property);
 
 # Other way of getting the data through StreamBuilder
 1. Wrap your primary widget with StreamBuilder<*CustomModelName*>
 2. Create a stream property that holds the Database service class.
-3. Create a builder property (example below)
+3. Create a builder property.
  builder: (context,snapshot) {
 	 return ANY_WIDGET_TREE;
  }
-// NOTE: The snapshop here holds the data.
+// Note: The snapshop here holds the data.
 	> to access the data, just do this: snapshot.data
 	> if accessing a property: snapshot.data.property
 

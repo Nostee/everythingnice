@@ -1,5 +1,5 @@
 # Creating the main() function of your flutter app.
-//example:
+// Note: Example Only:
 void main() => runApp(MaterialApp(
 	home: *name of your class*()
 ));
@@ -12,7 +12,7 @@ void main() => runApp(MaterialApp(
 2. Name the class.
 3. Return a widget. Preferrably Scaffold().
 
-//example:
+// Note: Example Only:
 class *any name* extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class *any name* extends StatelessWidget {
 2. Name the class.
 3. Return a widget in the second created class. Preferrably Scaffold().
 
-//example:
+// Note: Example Only:
 class Test extends StatefulWidget {
   @override
   _TestState createState() => _TestState();
@@ -48,14 +48,14 @@ class _TestState extends State<Test> {
 2. Choose your new state. 
 
 # How to display data in your widgets.
-//example:
+// Note: Example Only:
 int ctr = 0;
 *when using in widget*
 "$ctr"
 //always use in a string then put a dollar sign before the variable.
 
 # When manipulating data in a function. Always put your code in the setState(() {}). It also works even if the function is empty.
-//example:
+// Note: Example Only:
 onPressed: () {
           setState(() {
             myLevel = myLevel+1;
@@ -74,7 +74,7 @@ onPressed: () {
 3. Import your file to your main class.
 
 "Note: Creating your own class is like creating your own data type with different properties."
-//example(creating your own class)
+// Note: Example Only(creating your own class)
 class Person
 {
 	String name;
@@ -82,7 +82,7 @@ class Person
 	
 	Person({this.name , this.age})
 }
-//example(importing)
+// Note: Example Only(importing)
 import "person.dart";
 
 # Assigning data to your class (mostly done in a list).
@@ -92,7 +92,7 @@ List<Person> people = [
 
 # When getting a data from the property of a custom class.
 1. Should be inside the ${object.property}
-//example
+// Note: Example Only
 children: people.map((human){
 return Text("Name is ${human.name}, ${human.age} years old.")
 })
@@ -103,7 +103,7 @@ return Text("Name is ${human.name}, ${human.age} years old.")
 3. Create a final variable name of the object that will be used.
 4. Create a constructor that gives data to the final variable.
 5. Import the files imported by the main file.
-//example
+// Note: Example Only
 class QuoteTemplate extends StatelessWidget {
   final Quotes myQuote;
   QuoteTemplate({this.myQuote});
@@ -114,7 +114,7 @@ class QuoteTemplate extends StatelessWidget {
   }
 }
 
-// example for when calling a widget class.
+// Note: Wor when calling a widget class.
 children: myQuote.map((x) {
 		return QuoteTemplate(myQuote: x);
 	  }).toList(),
@@ -122,14 +122,14 @@ children: myQuote.map((x) {
 # Creating a function object.
 1. Create a function object.
 2. This is mostly created in custom widgets.
-//example
+// Note: Example Only
 final Function delete; 
 
 Notes: 
 1. "delete" is the variable name
 2. "Function" is an object.
 
-// example when delivering the data of the custom function from the main class
+// Note: Example when delivering the data of the custom function from the main class
 children: myQuote.map((x) {
                 return QuoteTemplate(
                     myQuote: x, //disregard this. focus on the delete
@@ -141,7 +141,7 @@ children: myQuote.map((x) {
                 );
               }).toList(),
 
-// example when calling the function from the custom class
+// Note: When calling the function from the custom class
 onPressed: () 
 {
      delete();
@@ -152,11 +152,11 @@ onPressed: ()
 2. In your main class, create a routes property. (Go to the MaterialApp() section in order to understand on how to use this property.)
 3. Put some destination in your routes property. 
 4. In order to navigate to a page, add a Navigator. object to the function of a particular button.
-   //example:
+   // Note: Example Only:
 	onPressed: () {
-		Navigator.pushNamed(context, "/whateverlocation"); //stacks to the current screen
+		Navigator.pushNamed(context, "/whateverlocation"); 
 		/or/
-		Navigator.pushReplacementNamed(context, "/whateverlocation"); //replaces the current screen
+		Navigator.pushReplacementNamed(context, "/whateverlocation"); 
 		/or/
 		Naviagtor.pop(context, {}) //goes back to the initial screen
 	}
@@ -164,7 +164,7 @@ onPressed: ()
 # Passing data to other page.
 1. Add an additional argument named "arguments:" to the Navigator. object. //when popping, "arguments: " is not needed anymore.
 2. Put a map inside the argument. 
-	//example:
+	// Note: Example Only:
 	onPressed: () {
 		Navigator.pushReplacedNamed(context, "/whateverlocation",arguments: {
 			'location' : wt.location,
@@ -175,7 +175,7 @@ onPressed: ()
 3. Go to the page that you will navigate into.
 4. Initialize a map data. (outside of build)
 5. Give the map variable a ModalRoute. object. (inside the build)
-	//example:
+	// Note: Example Only:
 	class _HomeState extends State<Home> {
 
 	  Map myData;
@@ -207,7 +207,7 @@ onPressed: ()
 # Implementing a function that runs once the custom class run.
 1. Just right after the class state, type initstate and it will automatically code for you.
 2. Remove TO DO line.
-	//example:
+	// Note: Example Only:
 	@override
 	void initState()
 	{
@@ -222,7 +222,7 @@ onPressed: ()
 4. Then put a "async" right after the function name. (After the "()")
 5. If you want to finish a function first before moving on to the next function, put an "await" before the line.
 6. Always wrap void with Future.
-	//example
+	// Note: Example Only
 	  Future<void> delayedRun() async
 	  {
 		await Future.delayed(Duration(seconds: 3),() {
@@ -234,7 +234,7 @@ onPressed: ()
 1. Initialize a variable then put a Future. object in it. (Including the properties)
 2. Inside the nested function, return a value.
 3. Do not forget the "async". For some reason, you can't return a value without it.
-	//example
+	// Note: Example Only
 	Future<void> delayedRun() async
 	{
 		String username = await Future.delayed(Duration(seconds: 3),() {
@@ -245,7 +245,7 @@ onPressed: ()
 # Adding the HTTP package to flutter.
 1. Go to pubspec.yaml
 2. Under dependencies, add the package, http: ^0.12.0+2
-	//example
+	// Note: Example Only
 		dependencies:
 		  flutter:
 			sdk: flutter
@@ -272,7 +272,7 @@ onPressed: ()
  1. Get the variable name of your DateTime object then put a ".add()" to it.
  2. Add a Duration() function inside the add() function.
  3. Inside the duration() function, put "hours: " then put an integer right after it. 
-	//example:
+	// Note: Example Only:
 	Future<void> getTime() async
 	  {
 		Response manila = await get("http://worldtimeapi.org/api/timezone/Asia/Manila");
@@ -289,7 +289,7 @@ onPressed: ()
 # Formatting Dates.
 1. Go to pubspec.yaml
 2. Under dependencies, add the package, intl: ^0.15.8
-	//example
+	// Note: Example Only
 	dependencies:
 	  flutter:
 		sdk: flutter
@@ -298,13 +298,13 @@ onPressed: ()
 3. Save file then get dependencies on the main class. 
 4. import 'package:intl/intl.dart' on the file where you're gonna use the intl package.
 5. Assign a DateFormat.jm().format() inside a String variable.
-	//example:
+	// Note: Example Only
 	currentTime = DateFormat.jm().format(dt); //this is for time only.
  
  # Creating a loading display
 1. Go to pubspec.yaml
 2. Under dependencies, add the package, flutter_spinkit: ^4.0.0
-	//example
+	// Note: Example Only
 	dependencies:
 	  flutter:
 		sdk: flutter
@@ -314,7 +314,7 @@ onPressed: ()
 3. Save file then get dependencies on the main class. 
 4. import 'package:flutter_spinkit/flutter_spinkit.dart' on the file where you're gonna use the flutter_spinkit package.
 5. Go to the website: pub.dev/packages/flutter_spinkit and choose a widget and place it in a child property.
-	//example
+	// Note: Example Only
 	child: SpinKitRotatingCircle(
 	  color: Colors.white,
 	  size: 50.0,
@@ -322,7 +322,7 @@ onPressed: ()
 	
  # Using ternary operators.
  1. Shorcut if condition looks like this:
-	//example:
+	// Note: Example Only
 	bool checker = *condition* ? true : false;
 	
  # Creating constants.
@@ -359,14 +359,14 @@ onPressed: ()
 	> home - it assigns a widget that the app should show first when it is opened.
 		   - therefore, you should assign a widget here; Preferrably your own class.
 	> routes - it contains a function that handles a map. 
-	//example
-	routes: {
+	// Note: Example Only
+	routes: 
+	{
 		"/": (context) => LoadingScreen(),
 		"/home": (context) => Home(),
 		"/location": (context) => ChooseLocation(),
 	}
-		Notes: "/" stands for a base route. Basically, the app starts on the base route.
-			   "/anything" stands for a route. 
+		// Note: "/" stands for a base route. Basically, the app starts on the base route.
 
     > initialRoute - It overrides the base route. Do not put with the home property.
 				   - It contains a string value of the page. eg. "/home"
@@ -377,6 +377,7 @@ onPressed: ()
 	> primaryColor
 	> accentColor
 	> cursorColor
+	> fontFamily
 	
 # Widget: Scaffold() - it wraps our widgets into one whole page.
 	Properties:
@@ -394,18 +395,18 @@ onPressed: ()
 	> centerTitle - it contains a boolean(true or false) that decides whether the text is centralized or not.
 	> backgroundColor - it paints the widget with an assigned color.
 					  - it contains a Color. object: Color.*any color*[*any value*]
-							// eg. Colors.red[500] 
+							// Notes:  Colors.red[500] 
 	> elevation - set to 0.0 to remove the drop shadow.
 	> actions - it contains a list of widgets.
 	
 # Widget: FloatingActionButton() - it handles the info of the floatingActionButton property.
 	Properties:
 	> onPressed - it contains a function.
-					//eg. () {*code here*} 
+					// Note: Example Only. () {*code here*} 
 	> child - it handles a single widget nested into its parent widget.
 	> backgroundColor - it paints the widget with an assigned color.
 					  - it contains a Color. object: Color.*any color*[*any value*]  
-							// eg. Colors.red[500] 
+							// Notes:  Colors.red[500] 
 	
 # Widget: Text() - it handles a String to be shown and could hold multiple properties.
 	Properties:
@@ -417,10 +418,10 @@ onPressed: ()
 	> fontFamily: it contains a String which is the name of your chosen font family. 
 	> color - it paints the widget with an assigned color.
 			- it contains a Color. object: Color.*any color*[*any value*]  
-					// eg. Colors.red[500] 
+					// Notes:  Colors.red[500] 
 	> fontSize - it contains a double that determines the size of the font.
 	> fontWeight - it contains a FontWeight. object:  FontWeight.*any font weight*
-						// eg. FontWeight.bold 
+						// Notes:  FontWeight.bold 
 	> letterSpacing - it contains a double that determines the space between the letters.
 
 ***USING OTHER FONTS***
@@ -429,7 +430,7 @@ onPressed: ()
 3. Edit pubspec.yaml, particularly on the "fonts" section.
 4. Click "Get dependencies" on the main class.
 
-//eg. 
+// Note: Example Only
 fonts: 
 	- family: any name you want to give on your font
 	  fonts: 
@@ -453,7 +454,7 @@ fonts:
 3. Edit pubspec.yaml, particularly on the "assets" section.
 4. Click "Get dependencies" on the main class.
 
-//eg. 
+// Note: Example Only
 assets: 
 	- name of folder/
 ******
@@ -462,11 +463,13 @@ assets:
 						
 	Properties:
 	> onPressed - it contains a function.
-					//eg. () {*code here*} 
+					// Note: Example Only 
+					() {*code here*} 
 	> child - it handles a single widget nested into its parent widget.
 	> color - it paints the widget with an assigned color.
 			- it contains a Color. object: Color.*any color*[*any value*]  
-					// eg. Colors.red[500] 
+					// Note: Example Only 
+					Colors.red[500] 
 	if .icon:
 	> icon - contains the widget, Icon().
 	> label - it sits right next to the icon.
@@ -476,14 +479,14 @@ assets:
 	Properties:
 	> color - it paints the widget with an assigned color.
 			- it contains a Color. object: Color.*any color*[*any value*]  
-					// eg. Colors.red[500] 
+					// Notes:  Colors.red[500] 
 	> size	- it contains a double that determines it size.
 	
 # Widget: Container() - it wraps the widget.
 	Properties:
 	> color - it paints the widget with an assigned color.
 			- it contains a Color. object: Color.*any color*[*any value*]  
-					// eg. Colors.red[500] 
+					// Notes:  Colors.red[500] 
 	> child - it handles a single widget nested into its parent widget.
 	> padding/margin - it gives space surrounding the widget that's inside/outside the container
 			  - contains an EdgeInsets. object: EdgeInsets.all[double]
@@ -552,7 +555,8 @@ assets:
 	> height - it contains a double that determines its height.
 	> color - it paints the widget with an assigned color.
 			- it contains a Color. object: Color.*any color*[*any value*]  
-					// eg. Colors.red[500] 
+					// Note: Example Only
+					Colors.red[500] 
 	
 # Widget: Card() - it acts as a container of a widget in a elevated card form.
 	Properties:
@@ -570,7 +574,7 @@ assets:
 	Properties:
 	> itemCount - it handles an integer that determines the length of your list display.
 	> itemBuilder - it contains a function that handles a context,index and an another function that returns a widget.
-		//example:
+		// Note: Example Only
 		body: ListView.builder(
 			itemCount: variablename.length,DisplayBrews()
 			itemBuilder: (context,index) {
@@ -582,7 +586,7 @@ assets:
 	> onTap - it handles a function like onPressed.
 	> title - it handles a text widget to be displayed.
 	> leading - it handles an image to be displayed before the label.
-		//example: 
+		// Note: Example Only
 		ListTile(
 		onTap: () {}
 		title: Text(variablename[index].propertyname)
@@ -613,7 +617,7 @@ assets:
 	> filled - boolean if it is a solid field.
 	> fillColor - determines the color of the field.
 	
-	//example:
+	// Note: Example Only
 	TextFormField
 	(
 		decoration: InputDecoration(
@@ -646,7 +650,7 @@ assets:
 	Properties:
 	> value - it contains the variable of the data.
 	> child - it holds a text that containts the variable.
-	//example
+	// Note: Example Only
 	DropdownButtonFormField(
 		value: currentSugars ?? '0',
 		items: sugars.map((sugar){
@@ -673,9 +677,6 @@ assets:
 	> activeColor: contains a Color object of the slider.
 	> inactiveColor: contains a Color object of the line.
 	
-	
-
-
 ********************SPECIAL SCREENS********************
  
 # showModalBottomSheet - it slides a screen that starts at the bottom.
@@ -688,7 +689,7 @@ assets:
       });
     }
 3. Return any widget you want.
-
+// Note: It is recommended to return a widget that's outside the class
 
 ********************USEFUL FUNCTIONS********************
  FocusScope.of(context).requestFocus(new FocusNode()); // it removes the focus
