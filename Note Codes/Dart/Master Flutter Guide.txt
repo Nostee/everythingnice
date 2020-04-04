@@ -186,8 +186,8 @@ onPressed: ()
 		return Scaffold()
 	  }
  
- # Navigator Pop and Data Return Combo
- 1. From the main class:
+# Navigator Pop and Data Return Combo
+1. From the main class:
 		onPressed: () async 
 		{
 		  dynamic result = await Navigator.pushNamed(context,"/chooseLocation");
@@ -333,15 +333,26 @@ onPressed: ()
  4. Import the folder in the class where you'll be using the constants.
  5. Just call the variable name when using it.
  6. When adding properties, just add "variable_name.copyWith(property: value)"
+ 
+# Validating User Input in Form Fields
+1. Create a final variable containing GlobalKey object that has <FormState>() in the class where you use the Form() widget.
+> final formKey = GlobalKey<FormState>();
+2. Put a key property and put the formKey inside it. (do this literally)
+3. Inside a function (prefferably in onPressed), create an if statement. (this is inside where you're gonna get all the values of the form)
+4. The condition is:
+> if(formKey.currentState.validate())
+> the condition statement returns true or false.
+5. Create a validator property inside the TextFormFields that has a function with the value inside the parenthesis.
+6. Return a null in the validator function if it's valid. 
 
 
-"********************WIDGETS********************"
+********************WIDGETS********************
 
 ***NOTICE***
 // Widgets starts with an UPPERCASE letter.
 // Properties starts with a LOWERCASE letter.
 // put a comma(,) every after widget/property if you to want to put another widget/property.
-******
+************
 
 # Widget: MaterialApp() - it is our main widget.
 	Properties:
@@ -665,9 +676,9 @@ assets:
 	
 
 
- "********************SPECIAL SCREENS********************"
+********************SPECIAL SCREENS********************
  
- # showModalBottomSheet - it slides a screen that starts at the bottom.
+# showModalBottomSheet - it slides a screen that starts at the bottom.
 1. Create a function inside the Widget build.
 2. Do this code:
 	void showSettings()
@@ -679,10 +690,11 @@ assets:
 3. Return any widget you want.
 
 
- "********************USEFUL FUNCTIONS********************"
+********************USEFUL FUNCTIONS********************
  FocusScope.of(context).requestFocus(new FocusNode()); // it removes the focus
+ 
 	
-"********************TIPS********************"
+********************TIPS********************
 1. In order for the ListView.builder be inside the column, wrap it with Expanded().
 	
 	

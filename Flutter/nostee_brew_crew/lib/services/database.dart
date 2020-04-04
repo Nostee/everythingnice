@@ -31,7 +31,7 @@ class Database
     }).toList();
   }
 
-  // THIS IS FOR STREAMING DATA
+  // THIS IS FOR STREAMING DATA (ALL USERS)
   Stream<List<Flavors>> get info{
     return brews.snapshots().map(flavorList);
   }
@@ -47,7 +47,7 @@ class Database
     );
   }
 
-  // THIS IS FOR STREAMING DATA
+  // THIS IS FOR STREAMING DATA (SINGLE USER)
   Stream<UserData> get brewData{
     return brews.document(uid).snapshots().map(myUserData);
   }
