@@ -50,7 +50,7 @@ Stream<User> get user
 	return auth.onAuthStateChanged.map(_userFromFirebase);
 }
   
-Notes:
+// Note:
 > User is the custom class made that is in the models folder.
 > Its parameter is a FirebaseUser. 
 > It returns a data if it received a data. 
@@ -148,12 +148,6 @@ Future<void> delayedRun() async
 	> final CollectionReference var = Firestore.instance.collection('name of your collection');
 	Note: This acts as your collection reference in the firestore.
 
-// Note: Call the function in the authenticator service when registering a user.
-await Database(uid: user.uid).updateUserData('e','New Member',50);
-
-// Note: var is the collection reference.
-	 - uid is to determine which user has the data
-
 # Creating model for the extracted data from the database.
 1. Create a file in your models folder.
 2. Create your own class with final variables/properties representing each data you want to extract.
@@ -232,7 +226,7 @@ print(myData.property);
  builder: (context,snapshot) {
 	 return ANY_WIDGET_TREE;
  }
-// Note: The snapshop here holds the data.
+// Note: The snapshop here holds the data. 
 	> to access the data, just do this: snapshot.data
 	> if accessing a property: snapshot.data.property
 
