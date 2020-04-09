@@ -1,3 +1,5 @@
+CHAPTER 1 - SET UP
+
 # Setting Up
 1. Create this folders inside the "lib" folder.
 > loaders // Note: for classes that will load data from the network
@@ -15,6 +17,7 @@ Note: Do not put directly the material app in the runApp().
 # Adding Firebase to your App
 1. Go to the firebase console and click "Add Firebase to your Android App".
 2. "Application ID" or "Android Package Name" is in (android/app/build.gradle)
+	> also change the package name in (android/app/src/main/AndroidManifest.xml)
 	> minimum sdk ver. should be 21.
 3. Follow the instructions there.
 4. After everything is done, go to "pubspec.yaml".
@@ -23,6 +26,8 @@ Note: Do not put directly the material app in the runApp().
 > cloud_firestore: ^0.13.4+2
 > firebase_core: ^0.4.4+3
 > provider: ^4.0.4
+
+CHAPTER 2 - AUTHENTICATION SERVICE
 
 # Create an Authenticator Service
 1. Create a new file named auth.dart (or name it whatever u want)
@@ -107,16 +112,6 @@ Future register(String email,String password) async
 	FirebaseUser user = result.user;
 }
 
-# UpdateUserData Example Code
-Future updateUserData(String sugars,String name,int strength) async
-{
-	return await var.document(uid).setData({
-		"sugars" : sugars,
-		"name" : name,
-		"strength" : strength,
-	});
-}
-
 # Calling the Authenticator Class through the Loader Class
 // Note: In the UI class:
 onPressed: () async 
@@ -138,6 +133,8 @@ Future<void> delayedRun() async
 	Navigator.pop(context, {"data": currentUser});
 }
 
+CHAPTER 3 - DATABASE SERVICE
+
 # Creating Database Service
 1. Inside the services folder, create a database.dart
 2. import 'package:cloud_firestore/cloud_firestore.dart';
@@ -153,45 +150,43 @@ Future<void> delayedRun() async
 2. Create your own class with final variables/properties representing each data you want to extract.
 3. Create constructors that will pass on the data to the variables.
 
+CHAPTER 4 - STREAMING DATA
+
 # Putting data in your custom model. (ALL USER) 
-1. Import your custom model.
-2. Create this code:
-// Note: Example only
 List<*CustomModelName*> var(QuerySnapshot snapshot)
 {
-return snapshot.documents.map((doc){
-  return CustomModelName(
-	property1: doc.data["databaseproperty1"] ?? '',
-	property2: doc.data["databaseproperty2"] ?? '',
-	property3: doc.data["databaseproperty3"] ?? '',
-  );
-}).toList();
+	return snapshot.documents.map((doc){
+	return CustomModelName(
+		property1: doc.data["databaseproperty1"] ?? '',
+		property2: doc.data["databaseproperty2"] ?? '',
+		property3: doc.data["databaseproperty3"] ?? '',
+	);
+	}).toList();
 }
 Notes: > the ?? means that if the data is null, it will return a '' or 0 instead. (Depends on the data type of the variable);
-	 > QuerySnapshot gets all the data in the database.
-	 > The Stream will determine which document.
+	   > The Stream will determine which collection.
  
  
 # Streaming Data from the Database (ALL USER)
 Stream<List<*CustomModelName*>> get var
 {
-return var.snapshots().map(*variableNameOfList*); 
+	return var.snapshots().map(*variableNameOfList*); 
 } 
 
 # Putting Data in your custom model. (SINGLE USER)
 CustomModelName var(DocumentSnapshot snapshot)
 {
-return CustomModelName(
+	return CustomModelName(
 	property1: snapshot.data['name of database property'],
 	property1: snapshot.data['name of database property'],
 	property1: snapshot.data['name of database property'],
-)
+	)
 }
   
 # Streaming Data from the Database (SINGLE USER)
 Stream<CustomModelName> get brewData 
 {
-return var.document(uid).snapshots().map(*variableNameOfModel*);
+	return var.document(uid).snapshots().map(*variableNameOfModel*);
 }
 
 // Note: the var here is the collection reference.
@@ -207,6 +202,7 @@ return StreamProvider<List<*CustomModelName*>>.value(
 // Note: the var is whatever the variable is fetched by get.
 	  
 // Note: Once you do this, you can now access the data through...
+
 // Note: if all data from the users
 final dynamic myData = Provider.of<List<Model>>(context); 
 // Note: Example Code for looping through the data of the listed model 
@@ -219,24 +215,56 @@ for(var x in myData)
 final dynamic myData = Provider.of<Model>(context);  
 print(myData.property);
 
-# Other way of getting the data through StreamBuilder
-1. Wrap your primary widget with StreamBuilder<*CustomModelName*>
-2. Create a stream property that holds the Database service class.
-3. Create a builder property.
- builder: (context,snapshot) {
-	 return ANY_WIDGET_TREE;
- }
-// Note: The snapshop here holds the data. 
-	> to access the data, just do this: snapshot.data
-	> if accessing a property: snapshot.data.property
+CHAPTER 5 - C.R.U.D + S
 
+# Create Data
+// Note: Automatically adds the data to the specific UID (Not sure )
+Future createData(String sugars,String name,int strength) async 
+{
+    await var.add({
+		"sugars" : sugars,
+		"name" : name,
+		"strength" : strength,
+		});
+}
+
+# Read Data
+Future readData() async 
+{
+    DocumentSnapshot snapshot = await var.document(uid).get();
+}
+
+# Update Data
+Future updateData(String sugars) async 
+{
+    await var.document(uid).updateData({
+		'sugars': sugars
+		});
+}
+
+# Delete Data
+Future deleteData() async
+{
+    await var.document(uid).delete();
+}
+
+# Set Data
+Future updateUserData(String sugars,String name,int strength) async
+{
+	await var.document(uid).setData({
+		"sugars" : sugars,
+		"name" : name,
+		"strength" : strength,
+	});
+}
  
+CHAPTER 6 - Snapshots (In-depth)
+// Note: Not yet clear.
+https://github.com/RobertBrunhage/Youtube-Tutorials/blob/master/firestore_crud/lib/home.dart
 
- 
- 
-
-
-
+DocumentSnapshot var - it catches the specific document.
+QuerySnapshot var - catches all documents. 
+		      	  - it returns an array/list of documents.
 
 
 

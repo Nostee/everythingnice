@@ -1,3 +1,5 @@
+CHAPTER 1 - THEORIES
+
 # Creating the main() function of your flutter app.
 // Note: Example Only:
 void main() => runApp(MaterialApp(
@@ -346,13 +348,11 @@ onPressed: ()
 6. Return a null in the validator function if it's valid. 
 
 
-********************WIDGETS********************
+CHAPTER 2 - WIDGETS
 
-***NOTICE***
-// Widgets starts with an UPPERCASE letter.
-// Properties starts with a LOWERCASE letter.
-// put a comma(,) every after widget/property if you to want to put another widget/property.
-************
+// Note: Widgets starts with an UPPERCASE letter.
+// Note: Properties starts with a LOWERCASE letter.
+// Note: put a comma(,) every after widget/property if you to want to put another widget/property.
 
 # Widget: MaterialApp() - it is our main widget.
 	Properties:
@@ -435,7 +435,6 @@ fonts:
 	- family: any name you want to give on your font
 	  fonts: 
 		- asset: path of the font file
-******
 
 # Widget: Center() - it centralizes any nested widget inside of it.
 	Properties:
@@ -677,7 +676,7 @@ assets:
 	> activeColor: contains a Color object of the slider.
 	> inactiveColor: contains a Color object of the line.
 	
-********************SPECIAL SCREENS********************
+CHAPTER 3 - SCREENS
  
 # showModalBottomSheet - it slides a screen that starts at the bottom.
 1. Create a function inside the Widget build.
@@ -691,11 +690,11 @@ assets:
 3. Return any widget you want.
 // Note: It is recommended to return a widget that's outside the class
 
-********************USEFUL FUNCTIONS********************
- FocusScope.of(context).requestFocus(new FocusNode()); // it removes the focus
+CHAPTER 4 - FUNCTIONS
+FocusScope.of(context).requestFocus(new FocusNode()); // it removes the focus
  
 	
-********************TIPS********************
+CHAPTER 5 - TIPS
 1. In order for the ListView.builder be inside the column, wrap it with Expanded().
 	
 	

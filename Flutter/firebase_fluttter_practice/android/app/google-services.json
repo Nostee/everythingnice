@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1085090250573",
+    "firebase_url": "https://fir-flutter-practice-af24c.firebaseio.com",
+    "project_id": "fir-flutter-practice-af24c",
+    "storage_bucket": "fir-flutter-practice-af24c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085090250573:android:47801d4348718499ea4104",
+        "android_client_info": {
+          "package_name": "com.nostdoro.firebase_fluttter_practice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085090250573-vtqeu9cv3h9jdbgqf62japbev3i5cvij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKJTgMbCQlvZMysnRfLYbS8YliNsEXazc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085090250573-vtqeu9cv3h9jdbgqf62japbev3i5cvij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
