@@ -1,0 +1,190 @@
+CHAPTER 1: Basic Queries 
+
+# Hierchy
+SELECT
+FROM
+WHERE
+ORDER BY
+LIMIT
+JOIN
+
+# Choosing a database
+USE *name of database*;
+
+# Selecting a column
+// Note: Single column
+SELECT *name of column*
+
+// Note: Multiple columns
+SELECT *name of column*,*name of column*, ... 
+
+// Note: All columns
+SELECT *
+
+# Selecting a table
+FROM *name of table*
+// Note: You can select many table.
+
+# Conditions
+WHERE *name of column* = *data*
+or
+WHERE *name of column* > *data*
+
+Basic Operators:
+> AND
+> OR 
+> NOT (Put after WHERE)
+
+Advanced Operators:
+> WHERE
+// Note: Specific Data
+WHERE *name of column* IN (data)
+or
+WHERE *name of column* IN (data,data,data)
+
+> BETWEEN
+// Note: Between (could also be equals to the certain data)
+WHERE *name of column* BETWEEN data AND data
+
+> LIKE
+// Note: Retrieving rows that match a specific pattern
+WHERE *name of column* LIKE 'b%'
+(It matches any data that starts with letter b. Case is not sensitive)
+or
+WHERE *name of column* LIKE '%b%'
+(It matches any data that has b in the data. Case is not sensitive)
+or
+WHERE *name of column* LIKE '___b'
+(It matches any data that has 4 letters and ends with b in the data. Case is not sensitive)
+
+% - any number of characters
+_ - any single character
+
+> REGEX
+// Note: Uses regular expression to search for a string.
+WHERE *name of column* REGEXP "regex expression"
+
+^ - beginning (put at the start of string)
+$ - end (put at the end of string)
+| - OR
+[abcd] - a or b or c or d
+
+> IS NULL
+// Note: returns a row where a certain column is null
+WHERE *name of column* IS NULL
+
+CHAPTER 2: Additional Queries
+
+# Labelling a column in display
+*name of column* AS "*name of new column*"
+// Note: Only for display.
+(points + 10) * 100 AS discount_factor 
+or
+(points + 10) * 100 AS "discount factor" 
+
+# Displaying Unique Data of a specific column
+SELECT DISTINCT *name of column*
+
+# Sorting
+// Note: Ascending
+SELECT * FROM *name of table* ORDER BY *name of column*
+or
+SELECT * FROM *name of table* ORDER BY *name of column*,*name of column*
+// Note: Descending
+SELECT * FROM *name of table* ORDER BY *name of column* DESC
+
+# Limiting Returned Data
+// Note: Returns a specific number of rows
+SELECT * FROM *name of table* LIMIT *any number*
+
+// Note: Skip the first numbers then returns the specific number of rows
+SELECT * FROM *name of table* LIMIT *any number*,*any number*
+
+CHAPTER 3: Joins
+
+# From the same database.
+SELECT * FROM *name of table* JOIN *name of table* ON *condition*
+// Note: You can join your own table with itself.
+// Note: You can join multiple times.
+
+# From different databases.
+SELECT * FROM *name of table* JOIN *name of database*.*name of table* ON *condition*
+
+# Returns all the column under the left/right table regardless of the condition is true or not.
+(FROM THE LEFT TABLE)
+SELECT * FROM *name of table* LEFT JOIN *name of table* ON *condition*
+(FROM THE RIGHT TABLE)
+SELECT * FROM *name of table* RIGHT JOIN *name of table* ON *condition*
+
+# Multiple conditions/joins
+SELECT * FROM *name of table* 
+    LEFT JOIN *name of database*.*name of table* 
+        ON *condition*
+        AND *condition*
+    JOIN *name of database*.*name of table* 
+        ON *condition*
+
+# Alternative for ON
+SELECT * FROM *name of table* 
+    JOIN *name of database*.*name of table* 
+        USING *name of column*
+// Note: Aligns data according to the chosen column
+
+CHAPTER 4: Manipulating Data
+
+# Inserting a single row
+INSERT INTO *name of table* (*name of column*,*name of column*...)
+VALUES (data,data...)
+
+# Inserting multiple rows
+INSERT INTO *name of table* (*name of column*,*name of column*...)
+VALUES (data,data...),
+       (data,data...),
+       (data,data...),
+       (data,data...)
+
+# Copy data from another table
+// Note: Creating a copy of a table 
+CREATE TABLE *name of table* AS 
+SELECT * FROM *name of table*
+
+// Note: Copying a data from a table into an existing table
+INSERT INTO *name of table* 
+SELECT * FROM *name of table* 
+WHERE *condition*
+
+# Updating a single row
+UPDATE *name of table* 
+SET *name of column* = data,*name of column* = data,*name of column* = data
+WHERE *condition*
+
+# Updating multiple rows
+UPDATE *name of table* 
+SET *name of column* = data,*name of column* = data,*name of column* = data
+WHERE *name of column* IN (data,data,data...)
+
+# Deleting Rows
+DELETE FROM *name of table*
+WHERE *condition* 
+
+# Subqueries
+// Note: Subquery is where you insert a SELECT statment in a WHERE condition.
+UPDATE *name of table* 
+SET *name of column* = data,*name of column* = data,*name of column* = data
+WHERE *name of column* = 
+    (
+        SELECT *name of column* FROM *name of table*
+        WHERE *condition*
+    )
+
+CHAPTER 5: Useful Tips
+# Converting a line to comment
+-- 
+
+# Combining 2 SELECT statements 
+UNION
+
+# Getting the last inserted id as a data
+LAST_INSERT_ID()
+
+

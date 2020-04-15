@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "622933686601",
+    "firebase_url": "https://fir-training-cbd9d.firebaseio.com",
+    "project_id": "fir-training-cbd9d",
+    "storage_bucket": "fir-training-cbd9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622933686601:android:82f4e47ba5a69a7a408298",
+        "android_client_info": {
+          "package_name": "com.nostdoro.firebase_training"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622933686601-kp7ph5kiu9regrgv0g312rimih8mil64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSF_0bBbuIb6JPucbPeQ34-HhL8K30RaU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622933686601-kp7ph5kiu9regrgv0g312rimih8mil64.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

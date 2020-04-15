@@ -17,11 +17,12 @@ Note: Do not put directly the material app in the runApp().
 # Adding Firebase to your App
 1. Go to the firebase console and click "Add Firebase to your Android App".
 2. "Application ID" or "Android Package Name" is in (android/app/build.gradle)
-	> also change the package name in (android/app/src/main/AndroidManifest.xml)
 	> minimum sdk ver. should be 21.
 3. Follow the instructions there.
-4. After everything is done, go to "pubspec.yaml".
-5. Add this to dependencies: 
+4. Set-up Rules.
+5. Set-up Sign-in method.
+5. After everything is done, go to "pubspec.yaml".
+6. Add this to dependencies: 
 > firebase_auth: ^0.15.5+2
 > cloud_firestore: ^0.13.4+2
 > firebase_core: ^0.4.4+3
@@ -34,7 +35,7 @@ CHAPTER 2 - AUTHENTICATION SERVICE
 2. import 'package:firebase_auth/firebase_auth.dart';
 3. Create a class.
 4. Create a Firebase property:
-> final FirebaseAuth auth = FirebaseAuth.instance;
+> final FirebaseAuth _auth = FirebaseAuth.instance;
 5. All methods here should be:
 > future and async function.
 > try and catch.
@@ -44,6 +45,7 @@ CHAPTER 2 - AUTHENTICATION SERVICE
 2. Name the class, User.
 3. Add a "uid" property that receives the data when called.
 
+// Note: In the authenticator service.
 # Creating a function that gives a property to the User Model. 
 User _userFromFirebase(FirebaseUser user){
       return user != null ? User(uid: user.uid) : null;
@@ -81,9 +83,9 @@ Future login(String email,String password) async
 {
 	try
 	{
-	  AuthResult result = await fba.signInWithEmailAndPassword(email: email, password: password);
+	  AuthResult result = await _auth.signInWithEmailAndPassword(email: email, password: password);
 	  FirebaseUser user = result.user;
-	  return currentUser(user);
+	  return _userFromFirebase(user);
 	}
 	catch(e)
 	{
@@ -152,7 +154,7 @@ CHAPTER 3 - DATABASE SERVICE
 
 CHAPTER 4 - STREAMING DATA
 
-# Putting data in your custom model. (ALL USER) 
+# Putting data in your custom model. (ALL DOCUMENTS) 
 List<*CustomModelName*> var(QuerySnapshot snapshot)
 {
 	return snapshot.documents.map((doc){
@@ -167,13 +169,13 @@ Notes: > the ?? means that if the data is null, it will return a '' or 0 instead
 	   > The Stream will determine which collection.
  
  
-# Streaming Data from the Database (ALL USER)
+# Streaming Data from the Database (ALL DOCUMENTS)
 Stream<List<*CustomModelName*>> get var
 {
 	return var.snapshots().map(*variableNameOfList*); 
 } 
 
-# Putting Data in your custom model. (SINGLE USER)
+# Putting Data in your custom model. (SINGLE DOCUMENT)
 CustomModelName var(DocumentSnapshot snapshot)
 {
 	return CustomModelName(
@@ -183,7 +185,7 @@ CustomModelName var(DocumentSnapshot snapshot)
 	)
 }
   
-# Streaming Data from the Database (SINGLE USER)
+# Streaming Data from the Database (SINGLE DOCUMENT)
 Stream<CustomModelName> get brewData 
 {
 	return var.document(uid).snapshots().map(*variableNameOfModel*);
@@ -216,12 +218,13 @@ final dynamic myData = Provider.of<Model>(context);
 print(myData.property);
 
 CHAPTER 5 - C.R.U.D + S
+// Note: var here is CollectionReferenceVariable.
 
+// Note: Generates a random document id.
 # Create Data
-// Note: Automatically adds the data to the specific UID (Not sure )
 Future createData(String sugars,String name,int strength) async 
 {
-    await var.add({
+    var.add({
 		"sugars" : sugars,
 		"name" : name,
 		"strength" : strength,
@@ -249,7 +252,7 @@ Future deleteData() async
 }
 
 # Set Data
-Future updateUserData(String sugars,String name,int strength) async
+Future setData(String sugars,String name,int strength) async
 {
 	await var.document(uid).setData({
 		"sugars" : sugars,
@@ -262,13 +265,35 @@ CHAPTER 6 - Snapshots (In-depth)
 // Note: Not yet clear.
 https://github.com/RobertBrunhage/Youtube-Tutorials/blob/master/firestore_crud/lib/home.dart
 
-DocumentSnapshot var - it catches the specific document.
-QuerySnapshot var - catches all documents. 
-		      	  - it returns an array/list of documents.
+snapshots() - they always return an iteration so they should be mapped and converted into a list.
+ 
+# Fetching all Document ID and their Data
+CollectionReferenceVariable.snapshots().map((x){
+	x.documents.map((z){
+		print("Document ID: ${z.documentID}");
+		print("Datas: ${z.data}");
+	}).toList();
+	}).toList();
+
+# Fetching Data from a Specified Document
+CollectionReferenceVariable.document("name of document").snapshots().map((x){
+        print("Current User: ${x.data["name"]}");
+      }).toList();
 
 
+CHAPTER 7 - Rules
+// Note: Not yet clear.
+https://medium.com/@khreniak/cloud-firestore-security-rules-basics-fac6b6bea18e
 
-
+# Data can only be accessed by authenticated users.
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth.uid != null;
+    }
+  }
+}
 
 
 

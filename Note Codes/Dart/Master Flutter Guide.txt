@@ -6,8 +6,8 @@ void main() => runApp(MaterialApp(
 	home: *name of your class*()
 ));
 
-// void main() is the fuction that our app will run first.
-// startApp() is a function that runs a widget at the startup.
+// Note: void main() is the fuction that our app will run first.
+// Note: startApp() is a function that runs a widget at the startup.
 
 # Creating a stateless widget.
 1. Type "stless" and it will automatically create the code for you.
@@ -522,7 +522,8 @@ assets:
 																  CrossAxisAlignment.start
 																  CrossAxisAlignment.end
 																  
-# Widget: Column() - it wraps multiple widgets vertically.
+# Widget: Column()/ListView() - it wraps multiple widgets vertically.
+// Note: ListView() has children property only.
 	Properties:
 	> children - it contains the list, <Widget>[].
 			   - the list can contain multiple widgets.
@@ -693,7 +694,6 @@ CHAPTER 3 - SCREENS
 CHAPTER 4 - FUNCTIONS
 FocusScope.of(context).requestFocus(new FocusNode()); // it removes the focus
  
-	
 CHAPTER 5 - TIPS
 1. In order for the ListView.builder be inside the column, wrap it with Expanded().
 	
