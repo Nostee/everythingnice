@@ -1,0 +1,279 @@
+# Connecting Your Project into MySQL
+1. Go to the Solution Explorer Window
+2. Right-click on the Project Title 
+3. Choose Add
+4. Click Reference
+5. Check MySql.Data
+
+# Essential Lines
+Imports MySql.Data.MySqlClient // Note: Outside the class.
+
+Dim mysqlcon As New MySqlConnection()
+Dim query As String
+Dim command As New MySqlCommand()
+Dim reader As MySqlDataReader
+
+mysqlcon.ConnectionString = "server=localhost;userid=root;password=Jedidiah1;database=cpe2a"
+
+// Note: Executing query on the command.
+query = "TYPE QUERY HERE"
+command = New MySqlCommand(query, mysqlcon)
+reader = command.ExecuteReader
+
+
+# Accessing Database within the Function
+Dim mysqlcon As New MySqlConnection()
+mysqlcon.ConnectionString = "server=localhost;userid=root;password=Jedidiah1;database=cpe2a"
+
+Try
+    mysqlcon.Open()
+
+    MessageBox.Show("Connected successfully!")
+
+    mysqlcon.Close()
+Catch ex As Exception
+    MessageBox.Show("Connection failed.")
+End Try
+
+mysqlcon.Dispose()
+
+# Logging-in
+Dim mysqlcon As New MySqlConnection()
+Dim query As String
+Dim command As New MySqlCommand()
+Dim reader As MySqlDataReader
+Dim ctr As Integer
+
+mysqlcon.ConnectionString = "server=localhost;userid=root;password=Jedidiah1;database=cpe2a"
+
+Try
+    mysqlcon.Open()
+
+    query = "SELECT * FROM stud_info 
+            WHERE UserName = '" & txtUsername.Text & "' AND Password = '" & txtPassword.Text & "' "
+    command = New MySqlCommand(query, mysqlcon)
+    reader = command.ExecuteReader
+
+    ctr = 0
+    While reader.Read
+        ctr = ctr + 1
+    End While
+
+    If ctr = 1 Then
+        MessageBox.Show("Username and Password are correct.")
+        SecondaryForm.Show()
+        Me.Hide()
+    ElseIf ctr > 1 Then
+        MessageBox.Show("Username is duplicated.")
+    Else
+        MessageBox.Show("Username and Password are not correct.")
+    End If
+
+    mysqlcon.Close()
+Catch ex As Exception
+    MessageBox.Show(ex.Message)
+End Try
+
+mysqlcon.Dispose()
+
+# Saving Data
+Dim mysqlcon As New MySqlConnection()
+Dim query As String
+Dim command As New MySqlCommand()
+Dim reader As MySqlDataReader
+
+mysqlcon.ConnectionString = "server=localhost;userid=root;password=Jedidiah1;database=cpe2a"
+
+Try
+    mysqlcon.Open()
+
+    query = "INSERT INTO stud_info (StudID,Username,Password) 
+            VALUES ('" & txtStudID.Text & "','" & txtUsername.Text & "','" & txtPassword.Text & "')"
+    command = New MySqlCommand(query, mysqlcon)
+    reader = command.ExecuteReader
+
+    MessageBox.Show("Data Saved!")
+
+    mysqlcon.Close()
+Catch ex As Exception
+
+End Try
+
+mysqlcon.Dispose()
+
+# Updating Data
+Dim mysql As New MySqlConnection()
+Dim query As String
+Dim command As New MySqlCommand()
+Dim reader As MySqlDataReader
+mysql.ConnectionString = "server=localhost;userid=root;password=Jedidiah1;database=cpe2a"
+
+Try
+    mysql.Open()
+    query = "UPDATE stud_info SET 
+        StudID = '" & txtStudID.Text & "',
+        UserName = '" & txtUsername.Text & "',
+        Password = '" & txtPassword.Text & "' 
+        WHERE StudID = '" & txtStudID.Text & "'"
+
+    command = New MySqlCommand(query, mysql)
+    reader = command.ExecuteReader
+
+    MessageBox.Show("Data updated!")
+    txtStudID.Text = ""
+    txtUsername.Text = ""
+    txtPassword.Text = ""
+    mysql.Close()
+Catch ex As Exception
+    MessageBox.Show(ex.Message)
+End Try
+
+mysql.Dispose()
+
+# Deleting Data
+Dim mysql As New MySqlConnection()
+Dim query As String
+Dim command As New MySqlCommand()
+Dim reader As MySqlDataReader
+mysql.ConnectionString = "server=localhost;userid=root;password=Jedidiah1;database=cpe2a"
+
+Try
+    mysql.Open()
+    query = "DELETE FROM stud_info WHERE StudID = '" & txtStudID.Text & "'"
+    command = New MySqlCommand(query, mysql)
+    reader = command.ExecuteReader
+
+    MessageBox.Show("Data deleted!!")
+    txtStudID.Text = ""
+    txtUsername.Text = ""
+    txtPassword.Text = ""
+    mysql.Close()
+Catch ex As Exception
+    MessageBox.Show(ex.Message)
+End Try
+
+mysql.Dispose()
+
+# Putting Items in Combo Box & List Box
+Dim mysql As New MySqlConnection()
+Dim query As String
+Dim command As New MySqlCommand()
+Dim reader As MySqlDataReader
+mysql.ConnectionString = "server=localhost;userid=root;password=Jedidiah1;database=cpe2a"
+
+Try
+    mysql.Open()
+    query = "SELECT * FROM stud_info"
+    command = New MySqlCommand(query, mysql)
+    reader = command.ExecuteReader
+    While reader.Read
+        cmbName.Items.Add(reader.GetString("FirstName"))
+        lbxNames.Items.Add(reader.GetString("FirstName"))
+    End While
+
+    mysql.Close()
+Catch ex As Exception
+    MessageBox.Show(ex.Message)
+End Try
+
+mysql.Dispose()
+
+# Getting Items from Combo Box & List Box
+Dim mysql As New MySqlConnection()
+Dim query As String
+Dim command As New MySqlCommand()
+Dim reader As MySqlDataReader
+mysql.ConnectionString = "server=localhost;userid=root;password=Jedidiah1;database=cpe2a"
+
+Try
+    mysql.Open()
+    query = "SELECT * FROM stud_info WHERE FirstName = '" & cmbNames.Text & "'" // Note: Just replace cmbNames with lbxNames (List Box)
+    command = New MySqlCommand(query, mysql)
+    reader = command.ExecuteReader
+    While reader.Read
+        txtStudID.Text = reader.GetInt32("StudID")
+        txtName.Text = reader.GetString("FirstName")
+        txtUsername.Text = reader.GetString("UserName")
+        txtPassword.Text = reader.GetString("Password")
+    End While
+
+    mysql.Close()
+Catch ex As Exception
+    MessageBox.Show(ex.Message)
+End Try
+
+mysql.Dispose()
+
+# Putting Data to Datagrid 
+Dim dbDataSet As New DataTable // Note: Should be outside the function.
+
+Dim mysql As New MySqlConnection()
+Dim query As String
+Dim command As New MySqlCommand()
+mysql.ConnectionString = "server=localhost;userid=root;password=Jedidiah1;database=cpe2a"
+
+Dim sda As New MySqlDataAdapter
+Dim bSource As New BindingSource
+
+Try
+    mysql.Open()
+    query = "SELECT StudID,FirstName,UserName,Password FROM stud_info"
+    command = New MySqlCommand(query, mysql)
+
+    sda.SelectCommand = command
+    sda.Fill(dbDataSet)
+    bSource.DataSource = dbDataSet
+    datagrid.DataSource = dbDataSet
+    sda.Update(dbDataSet)
+
+    mysql.Close()
+Catch ex As Exception
+    MessageBox.Show(ex.Message)
+End Try
+
+mysql.Dispose()
+
+# Getting Data from Datagrid
+If e.RowIndex >= 0 Then
+    Dim row As DataGridViewRow
+    row = Me.datagrid.Rows(e.RowIndex)
+
+    txtStudID.Text = row.Cells("StudID").Value.ToString
+    txtName.Text = row.Cells("FirstName").Value.ToString
+    txtUsername.Text = row.Cells("UserName").Value.ToString
+    txtPassword.Text = row.Cells("Password").Value.ToString
+End If
+
+# Searching in Datagrid
+// Note: dbDataSet is a variable of DataTable and should be outside the function
+
+Dim dv As New DataView(dbDataSet)
+dv.RowFilter = String.Format("FirstName like '%{0}%'", txtSearch.Text)
+datagrid.DataSource = dv
+
+# Loading Data into the Chart
+Dim mysqlcon As New MySqlConnection()
+Dim query As String
+Dim command As New MySqlCommand()
+Dim reader As MySqlDataReader
+
+mysqlcon.ConnectionString = "server=localhost;userid=root;password=Jedidiah1;database=cpe2a"
+
+Try
+    mysqlcon.Open()
+
+    query = "SELECT * FROM stud_info"
+    command = New MySqlCommand(query, mysqlcon)
+    reader = command.ExecuteReader
+
+    While reader.Read
+        chart.Series("NAME VS AGE").Points.AddXY(reader.GetString("FirstName"), reader.GetInt32("Age"))
+    End While
+
+    mysqlcon.Close()
+
+Catch ex As Exception
+    MessageBox.Show(ex.Message)
+End Try
+
+mysqlcon.Dispose()
