@@ -1,0 +1,12 @@
+Union command - connect two objects
+
+Modeling the Connections:
+1. Reflexive - p is connected to p
+2. Symmetric - if p is connted to q, then q is connected to p
+3. Transitive - if p is connected to q and q is connected to r, then p is connected to r
+
+Connected Components - maximal set of objects that are mutually connected
+
+Find query - check if two objects are in the same Components
+
+Union command - replace components containing two objects with their union.
