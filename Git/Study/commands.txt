@@ -18,7 +18,7 @@ git checkout *branch name* #go to a certain branch
 git checkout master #returns to the master branch
 
 git branch #returns a list of branches
-git branch *branchg name* #create new branch
+git branch *branch name* #create new branch
 
 git merge *name of branch* #merge the said branch to the current branch
 
