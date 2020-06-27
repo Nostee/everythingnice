@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="47dd72da-bc76-4ff0-8ee2-f4b984bb17ed" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1YJzPhtwyjx3ODMYHPueIMZF3zR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Nostee\Desktop\Nost_Repo\Java\Practice\Tutorial" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="47dd72da-bc76-4ff0-8ee2-f4b984bb17ed" name="Default Changelist" comment="" />
+      <created>1582675465361</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1582675465361</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="312" y="88" key="#Project_Structure" timestamp="1582675513649">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="312" y="88" key="#Project_Structure/0.0.1440.860@0.0.1440.860" timestamp="1582675513649" />
+    <state x="458" y="233" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583991506068">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="458" y="233" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.860@0.0.1440.860" timestamp="1583991506068" />
+    <state x="571" y="319" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1582675562387">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="571" y="319" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1440.860@0.0.1440.860" timestamp="1582675562387" />
+    <state x="500" y="184" key="FileChooserDialogImpl" timestamp="1582675501833">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="500" y="184" key="FileChooserDialogImpl/0.0.1440.860@0.0.1440.860" timestamp="1582675501833" />
+    <state x="200" y="4" key="SettingsEditor" timestamp="1582675504557">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="200" y="4" key="SettingsEditor/0.0.1440.860@0.0.1440.860" timestamp="1582675504557" />
+    <state x="421" y="254" key="com.intellij.ide.util.TipDialog" timestamp="1589012796282">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="421" y="254" key="com.intellij.ide.util.TipDialog/0.0.1440.860@0.0.1440.860" timestamp="1589012796282" />
+  </component>
+</project>
